@@ -1,0 +1,804 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F5F1E7;
+    --paper-line: #DBD2BE;
+    --surface: #FFFFFF;
+    --ink: #22262B;
+    --ink-soft: #656055;
+    --stamp-green: #2E6B4F;
+    --stamp-green-bg: #E3EEE7;
+    --stamp-red: #A23A30;
+    --stamp-red-bg: #F4E4DF;
+    --stamp-gray: #B9AF98;
+    --stamp-gray-bg: #EFEAE0;
+    --blue: #2B4870;
+    --blue-bg: #E6EAF1;
+    --radius: 3px;
+  }
+
+  * { box-sizing: border-box; }
+
+  #protokoll-root {
+    background: var(--paper);
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px);
+    background-size: 100% 32px;
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 28px 20px 60px;
+    min-height: 100%;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  #protokoll-root .sheet {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--paper-line);
+    box-shadow: 0 2px 0 var(--paper-line), 0 18px 40px -28px rgba(34,38,43,0.35);
+  }
+
+  /* Header */
+  #protokoll-root .head {
+    padding: 22px 26px 18px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  #protokoll-root .head-left { flex: 1; min-width: 220px; }
+  #protokoll-root .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+  #protokoll-root h1 {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 600;
+    font-size: 25px;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  #protokoll-root .field-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  #protokoll-root .field { display: flex; flex-direction: column; gap: 3px; }
+  #protokoll-root .field label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  #protokoll-root input[type=text], #protokoll-root input[type=date], #protokoll-root select {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13.5px;
+    padding: 7px 9px;
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+  }
+  #protokoll-root input[type=text]:focus, #protokoll-root select:focus, #protokoll-root input[type=date]:focus {
+    outline: 2px solid var(--blue);
+    outline-offset: 1px;
+  }
+  #protokoll-root #exam-name { min-width: 190px; }
+
+  /* Stamp badge */
+  #protokoll-root .stamp-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 2.5px solid currentColor;
+    border-radius: 6px;
+    padding: 8px 12px;
+    transform: rotate(-6deg);
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.3;
+  }
+  #protokoll-root .stamp-badge .big {
+    display: block;
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 21px;
+    letter-spacing: 0;
+  }
+
+  /* Totals strip */
+  #protokoll-root .totals {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  #protokoll-root .totals .t {
+    padding: 14px 16px;
+    border-right: 1px solid var(--paper-line);
+  }
+  #protokoll-root .totals .t:last-child { border-right: none; }
+  #protokoll-root .totals .t .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 3px;
+  }
+  #protokoll-root .totals .t .val {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  #protokoll-root .totals .t.emph { background: var(--blue-bg); }
+  #protokoll-root .totals .t.emph .val { color: var(--blue); }
+
+  /* Sections */
+  #protokoll-root .section {
+    padding: 18px 26px;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  #protokoll-root .section-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 14px;
+  }
+  #protokoll-root .section-title h2 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 0;
+  }
+  #protokoll-root .section-title .max {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  #protokoll-root .teil-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  #protokoll-root .teil-row:last-child { margin-bottom: 0; }
+  #protokoll-root .teil-name {
+    font-size: 13px;
+    min-width: 150px;
+    color: var(--ink);
+  }
+  #protokoll-root .teil-name .n {
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  #protokoll-root select.score-select {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    min-width: 70px;
+  }
+
+  /* Hören stamp toggles */
+  #protokoll-root .hoeren-group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+  #protokoll-root .hoeren-teil-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  #protokoll-root .stamp-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  #protokoll-root .stamp {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--stamp-gray);
+    background: var(--stamp-gray-bg);
+    color: var(--stamp-gray);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.12s ease;
+    user-select: none;
+  }
+  #protokoll-root .stamp:active { transform: scale(0.88) rotate(-4deg); }
+  #protokoll-root .stamp:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  #protokoll-root .stamp .qn {
+    position: absolute;
+    top: -8px;
+    right: -6px;
+    font-size: 8.5px;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--paper-line);
+    border-radius: 6px;
+    padding: 0 3px;
+    line-height: 1.3;
+  }
+  #protokoll-root .stamp.correct {
+    border-color: var(--stamp-green);
+    background: var(--stamp-green-bg);
+    color: var(--stamp-green);
+    transform: rotate(-5deg);
+  }
+  #protokoll-root .stamp.incorrect {
+    border-color: var(--stamp-red);
+    background: var(--stamp-red-bg);
+    color: var(--stamp-red);
+    transform: rotate(4deg);
+  }
+
+  #protokoll-root .legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+  }
+  #protokoll-root .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  #protokoll-root .legend .dot {
+    width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid currentColor; display: inline-block;
+  }
+
+  #protokoll-root .warn-banner {
+    margin-top: 10px;
+    background: var(--stamp-red-bg);
+    color: var(--stamp-red);
+    border: 1px solid var(--stamp-red);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-size: 12.5px;
+    display: none;
+  }
+  #protokoll-root .warn-banner.show { display: block; }
+
+  /* Schreiben */
+  #protokoll-root .schreiben-row {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+
+  /* Actions */
+  #protokoll-root .actions {
+    padding: 18px 26px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #protokoll-root button {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+  }
+  #protokoll-root button.secondary {
+    background: transparent;
+    color: var(--ink);
+  }
+  #protokoll-root button:disabled { opacity: 0.5; cursor: not-allowed; }
+  #protokoll-root .save-msg {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--stamp-green);
+    align-self: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  #protokoll-root .save-msg.show { opacity: 1; }
+
+  /* History */
+  #protokoll-root .history {
+    padding: 22px 26px 30px;
+  }
+  #protokoll-root .history h2 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  #protokoll-root .history .sub {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+  #protokoll-root table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  #protokoll-root th, #protokoll-root td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  #protokoll-root th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  #protokoll-root td.num { font-family: 'IBM Plex Mono', monospace; font-weight: 600; }
+  #protokoll-root td.weak { color: var(--stamp-red); }
+  #protokoll-root .row-actions { display: flex; gap: 6px; }
+  #protokoll-root .row-actions button {
+    padding: 4px 9px;
+    font-size: 11px;
+    border-width: 1px;
+  }
+  #protokoll-root .empty-state {
+    padding: 20px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    border: 1px dashed var(--paper-line);
+    border-radius: var(--radius);
+  }
+  #protokoll-root .loading {
+    padding: 20px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+
+  @media (max-width: 560px) {
+    #protokoll-root .totals { grid-template-columns: repeat(2, 1fr); }
+    #protokoll-root .totals .t:nth-child(2) { border-right: none; }
+    #protokoll-root .stamp { width: 32px; height: 32px; font-size: 11px; }
+    #protokoll-root .head { flex-direction: column; }
+    #protokoll-root table { font-size: 11px; }
+    #protokoll-root th:nth-child(2), #protokoll-root td:nth-child(2) { display: none; }
+  }
+</style>
+
+<div id="protokoll-root">
+  <div class="sheet">
+    <div class="head">
+      <div class="head-left">
+        <p class="eyebrow">telc Deutsch B1 · Prüfungsprotokoll</p>
+        <h1>Neue Prüfung protokollieren</h1>
+        <div class="field-row">
+          <div class="field">
+            <label for="exam-name">Prüfung / Name</label>
+            <input type="text" id="exam-name" placeholder="z. B. Jan, Vera, Mock 5" />
+          </div>
+          <div class="field">
+            <label for="exam-date">Datum</label>
+            <input type="date" id="exam-date" />
+          </div>
+        </div>
+      </div>
+      <div id="stamp-badge" class="stamp-badge">
+        <span class="big" id="stamp-badge-num">0/60</span>
+        <span id="stamp-badge-text">objektiver Teil</span>
+      </div>
+    </div>
+
+    <div class="totals">
+      <div class="t"><div class="label">Lesen</div><div class="val" id="total-lesen">0/20</div></div>
+      <div class="t"><div class="label">Sprachbausteine</div><div class="val" id="total-sb">0/20</div></div>
+      <div class="t"><div class="label">Hören</div><div class="val" id="total-hoeren">0/20</div></div>
+      <div class="t emph"><div class="label">Gesamt (o. Schreiben)</div><div class="val" id="total-gesamt">0/60</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><h2>Leseverstehen</h2><span class="max">20 Punkte</span></div>
+      <div class="teil-row">
+        <div class="teil-name">Teil 1 <span class="n">(1–5)</span></div>
+        <select class="score-select" id="lesen-t1" data-max="5"></select>
+      </div>
+      <div class="teil-row">
+        <div class="teil-name">Teil 2 <span class="n">(6–10)</span></div>
+        <select class="score-select" id="lesen-t2" data-max="5"></select>
+      </div>
+      <div class="teil-row">
+        <div class="teil-name">Teil 3 <span class="n">(11–20)</span></div>
+        <select class="score-select" id="lesen-t3" data-max="10"></select>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><h2>Sprachbausteine</h2><span class="max">20 Punkte</span></div>
+      <div class="teil-row">
+        <div class="teil-name">Teil 1 <span class="n">(21–30)</span></div>
+        <select class="score-select" id="sb-t1" data-max="10"></select>
+      </div>
+      <div class="teil-row">
+        <div class="teil-name">Teil 2 <span class="n">(31–40)</span></div>
+        <select class="score-select" id="sb-t2" data-max="10"></select>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><h2>Hörverstehen</h2><span class="max">20 Punkte</span></div>
+      <div class="hoeren-group">
+        <div>
+          <div class="hoeren-teil-label">Teil 1 (Fragen 41–45)</div>
+          <div class="stamp-grid" id="hoeren-t1"></div>
+        </div>
+        <div>
+          <div class="hoeren-teil-label">Teil 2 (Fragen 46–55) — Fallen-Bereich</div>
+          <div class="stamp-grid" id="hoeren-t2"></div>
+        </div>
+        <div>
+          <div class="hoeren-teil-label">Teil 3 (Fragen 56–60)</div>
+          <div class="stamp-grid" id="hoeren-t3"></div>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="color:var(--stamp-green)"></i>richtig</span>
+        <span><i class="dot" style="color:var(--stamp-red)"></i>falsch</span>
+        <span><i class="dot" style="color:var(--stamp-gray)"></i>noch offen</span>
+        <span style="color:var(--ink-soft)">Klicken zum Durchschalten: offen → richtig → falsch</span>
+      </div>
+      <div class="warn-banner" id="hoeren-warn">⚠ Es sind noch Fragen im Hörverstehen offen (·). Bitte alle markieren, bevor du speicherst — sonst fehlen sie in der Fehleranalyse.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><h2>Schreiben</h2><span class="max">separat bewertet</span></div>
+      <div class="schreiben-row">
+        <div class="field">
+          <label for="schreiben-status">Status</label>
+          <select id="schreiben-status">
+            <option value="ausstehend">Noch ausstehend</option>
+            <option value="bewertet">Bewertet</option>
+          </select>
+        </div>
+        <div class="field" id="schreiben-score-field" style="display:none;">
+          <label for="schreiben-score">Punkte (0–20 o. eigene Skala)</label>
+          <input type="text" id="schreiben-score" placeholder="z. B. 15" style="width:110px;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="save-btn">Prüfung speichern</button>
+      <button id="reset-btn" class="secondary">Formular zurücksetzen</button>
+      <span class="save-msg" id="save-msg">Gespeichert.</span>
+    </div>
+
+    <div class="history">
+      <h2>Protokollierte Prüfungen</h2>
+      <p class="sub">Persönlicher Verlauf — nur für dich sichtbar. Schwache Bereiche (&lt;60%) sind rot markiert.</p>
+      <div id="history-loading" class="loading">Lade gespeicherte Prüfungen …</div>
+      <div id="history-empty" class="empty-state" style="display:none;">Noch keine Prüfungen gespeichert. Trag oben deine erste Prüfung ein.</div>
+      <table id="history-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Prüfung</th><th>Datum</th><th>Lesen</th><th>SB</th><th>Hören</th><th>Gesamt</th><th>Schreiben</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const root = document.getElementById('protokoll-root');
+  const STORAGE_KEY = 'examlog:entries';
+
+  const lesenSelects = {
+    t1: document.getElementById('lesen-t1'),
+    t2: document.getElementById('lesen-t2'),
+    t3: document.getElementById('lesen-t3'),
+  };
+  const sbSelects = {
+    t1: document.getElementById('sb-t1'),
+    t2: document.getElementById('sb-t2'),
+  };
+
+  function fillSelect(sel, max) {
+    sel.innerHTML = '';
+    for (let i = 0; i <= max; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = i + ' / ' + max;
+      sel.appendChild(opt);
+    }
+    sel.value = 0;
+  }
+  fillSelect(lesenSelects.t1, 5);
+  fillSelect(lesenSelects.t2, 5);
+  fillSelect(lesenSelects.t3, 10);
+  fillSelect(sbSelects.t1, 10);
+  fillSelect(sbSelects.t2, 10);
+
+  // Hören question ranges
+  const hoerenRanges = {
+    t1: { start: 41, end: 45, el: document.getElementById('hoeren-t1') },
+    t2: { start: 46, end: 55, el: document.getElementById('hoeren-t2') },
+    t3: { start: 56, end: 60, el: document.getElementById('hoeren-t3') },
+  };
+  // state per question number -> '.', '+', '-'
+  let hoerenState = {};
+
+  function buildStamps() {
+    Object.values(hoerenRanges).forEach(({ start, end, el }) => {
+      el.innerHTML = '';
+      for (let q = start; q <= end; q++) {
+        hoerenState[q] = hoerenState[q] || '.';
+        const btn = document.createElement('div');
+        btn.className = 'stamp';
+        btn.tabIndex = 0;
+        btn.dataset.q = q;
+        btn.innerHTML = '<span class="mark">·</span><span class="qn">' + q + '</span>';
+        btn.addEventListener('click', () => cycleStamp(q));
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cycleStamp(q); }
+        });
+        el.appendChild(btn);
+      }
+    });
+  }
+
+  function renderStamps() {
+    root.querySelectorAll('.stamp').forEach(btn => {
+      const q = btn.dataset.q;
+      const state = hoerenState[q];
+      btn.classList.remove('correct', 'incorrect');
+      const mark = btn.querySelector('.mark');
+      if (state === '+') { btn.classList.add('correct'); mark.textContent = '✓'; }
+      else if (state === '-') { btn.classList.add('incorrect'); mark.textContent = '✗'; }
+      else { mark.textContent = '·'; }
+    });
+  }
+
+  function cycleStamp(q) {
+    const cur = hoerenState[q];
+    hoerenState[q] = cur === '.' ? '+' : (cur === '+' ? '-' : '.');
+    renderStamps();
+    updateTotals();
+  }
+
+  buildStamps();
+  renderStamps();
+
+  const schreibenStatus = document.getElementById('schreiben-status');
+  const schreibenScoreField = document.getElementById('schreiben-score-field');
+  const schreibenScore = document.getElementById('schreiben-score');
+  schreibenStatus.addEventListener('change', () => {
+    schreibenScoreField.style.display = schreibenStatus.value === 'bewertet' ? 'flex' : 'none';
+  });
+
+  function hoerenCorrectCount() {
+    return Object.values(hoerenState).filter(v => v === '+').length;
+  }
+  function hoerenUnsetCount() {
+    return Object.values(hoerenState).filter(v => v === '.').length;
+  }
+
+  function updateTotals() {
+    const l = Number(lesenSelects.t1.value) + Number(lesenSelects.t2.value) + Number(lesenSelects.t3.value);
+    const s = Number(sbSelects.t1.value) + Number(sbSelects.t2.value);
+    const h = hoerenCorrectCount();
+    const g = l + s + h;
+    document.getElementById('total-lesen').textContent = l + '/20';
+    document.getElementById('total-sb').textContent = s + '/20';
+    document.getElementById('total-hoeren').textContent = h + '/20';
+    document.getElementById('total-gesamt').textContent = g + '/60';
+
+    const badgeNum = document.getElementById('stamp-badge-num');
+    const badge = document.getElementById('stamp-badge');
+    badgeNum.textContent = g + '/60';
+    const pass = g >= 36; // 60% of 60, matches telc 60% pass logic for objective part
+    badge.style.color = pass ? 'var(--stamp-green)' : 'var(--stamp-red)';
+
+    const warn = document.getElementById('hoeren-warn');
+    warn.classList.toggle('show', hoerenUnsetCount() > 0);
+  }
+
+  [lesenSelects.t1, lesenSelects.t2, lesenSelects.t3, sbSelects.t1, sbSelects.t2].forEach(sel => {
+    sel.addEventListener('change', updateTotals);
+  });
+  updateTotals();
+
+  // default date = today
+  document.getElementById('exam-date').value = new Date().toISOString().slice(0, 10);
+
+  // ---------- Persistence ----------
+  let entries = [];
+  let editingId = null;
+
+  async function loadEntries() {
+    document.getElementById('history-loading').style.display = 'block';
+    try {
+      const result = await window.storage.get(STORAGE_KEY, false);
+      entries = result && result.value ? JSON.parse(result.value) : [];
+    } catch (err) {
+      entries = [];
+    }
+    document.getElementById('history-loading').style.display = 'none';
+    renderHistory();
+  }
+
+  async function persistEntries() {
+    try {
+      await window.storage.set(STORAGE_KEY, JSON.stringify(entries), false);
+    } catch (err) {
+      console.error('Storage error:', err);
+      alert('Speichern fehlgeschlagen. Bitte erneut versuchen.');
+    }
+  }
+
+  function pct(val, max) { return max === 0 ? 0 : val / max; }
+
+  function renderHistory() {
+    const table = document.getElementById('history-table');
+    const empty = document.getElementById('history-empty');
+    const body = document.getElementById('history-body');
+    body.innerHTML = '';
+
+    if (!entries.length) {
+      table.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+    table.style.display = 'table';
+    empty.style.display = 'none';
+
+    const sorted = [...entries].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    sorted.forEach(entry => {
+      const l = entry.lesen.t1 + entry.lesen.t2 + entry.lesen.t3;
+      const s = entry.sb.t1 + entry.sb.t2;
+      const h = Object.values(entry.hoeren).filter(v => v === '+').length;
+      const g = l + s + h;
+      const schreibenText = entry.schreibenStatus === 'bewertet'
+        ? (entry.schreibenScore || '—')
+        : 'ausstehend';
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${escapeHtml(entry.name || '(ohne Namen)')}</td>
+        <td>${entry.date || ''}</td>
+        <td class="num ${pct(l,20) < 0.6 ? 'weak' : ''}">${l}/20</td>
+        <td class="num ${pct(s,20) < 0.6 ? 'weak' : ''}">${s}/20</td>
+        <td class="num ${pct(h,20) < 0.6 ? 'weak' : ''}">${h}/20</td>
+        <td class="num">${g}/60</td>
+        <td>${escapeHtml(String(schreibenText))}</td>
+        <td class="row-actions">
+          <button data-action="edit" data-id="${entry.id}" class="secondary">Bearbeiten</button>
+          <button data-action="delete" data-id="${entry.id}" class="secondary">Löschen</button>
+        </td>
+      `;
+      body.appendChild(tr);
+    });
+
+    body.querySelectorAll('button[data-action="edit"]').forEach(btn => {
+      btn.addEventListener('click', () => loadIntoForm(btn.dataset.id));
+    });
+    body.querySelectorAll('button[data-action="delete"]').forEach(btn => {
+      btn.addEventListener('click', () => deleteEntry(btn.dataset.id));
+    });
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function loadIntoForm(id) {
+    const entry = entries.find(e => e.id === id);
+    if (!entry) return;
+    editingId = id;
+    document.getElementById('exam-name').value = entry.name;
+    document.getElementById('exam-date').value = entry.date;
+    lesenSelects.t1.value = entry.lesen.t1;
+    lesenSelects.t2.value = entry.lesen.t2;
+    lesenSelects.t3.value = entry.lesen.t3;
+    sbSelects.t1.value = entry.sb.t1;
+    sbSelects.t2.value = entry.sb.t2;
+    hoerenState = Object.assign({}, entry.hoeren);
+    renderStamps();
+    schreibenStatus.value = entry.schreibenStatus || 'ausstehend';
+    schreibenScoreField.style.display = schreibenStatus.value === 'bewertet' ? 'flex' : 'none';
+    schreibenScore.value = entry.schreibenScore || '';
+    updateTotals();
+    document.getElementById('save-btn').textContent = 'Änderungen speichern';
+    root.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  async function deleteEntry(id) {
+    if (!confirm('Diese Prüfung wirklich löschen?')) return;
+    entries = entries.filter(e => e.id !== id);
+    await persistEntries();
+    renderHistory();
+  }
+
+  function resetForm() {
+    editingId = null;
+    document.getElementById('exam-name').value = '';
+    document.getElementById('exam-date').value = new Date().toISOString().slice(0, 10);
+    lesenSelects.t1.value = 0; lesenSelects.t2.value = 0; lesenSelects.t3.value = 0;
+    sbSelects.t1.value = 0; sbSelects.t2.value = 0;
+    hoerenState = {};
+    buildStamps();
+    renderStamps();
+    schreibenStatus.value = 'ausstehend';
+    schreibenScoreField.style.display = 'none';
+    schreibenScore.value = '';
+    updateTotals();
+    document.getElementById('save-btn').textContent = 'Prüfung speichern';
+  }
+
+  document.getElementById('reset-btn').addEventListener('click', resetForm);
+
+  document.getElementById('save-btn').addEventListener('click', async () => {
+    const name = document.getElementById('exam-name').value.trim();
+    if (!name) {
+      alert('Bitte gib einen Namen für die Prüfung ein.');
+      return;
+    }
+    if (hoerenUnsetCount() > 0) {
+      const proceed = confirm('Es sind noch ' + hoerenUnsetCount() + ' Hörverstehen-Fragen offen (·). Trotzdem speichern?');
+      if (!proceed) return;
+    }
+
+    const entry = {
+      id: editingId || (Date.now().toString(36) + Math.random().toString(36).slice(2, 6)),
+      name,
+      date: document.getElementById('exam-date').value,
+      lesen: {
+        t1: Number(lesenSelects.t1.value),
+        t2: Number(lesenSelects.t2.value),
+        t3: Number(lesenSelects.t3.value),
+      },
+      sb: {
+        t1: Number(sbSelects.t1.value),
+        t2: Number(sbSelects.t2.value),
+      },
+      hoeren: Object.assign({}, hoerenState),
+      schreibenStatus: schreibenStatus.value,
+      schreibenScore: schreibenStatus.value === 'bewertet' ? schreibenScore.value.trim() : '',
+    };
+
+    if (editingId) {
+      entries = entries.map(e => e.id === editingId ? entry : e);
+    } else {
+      entries.push(entry);
+    }
+
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.disabled = true;
+    await persistEntries();
+    saveBtn.disabled = false;
+
+    renderHistory();
+    const msg = document.getElementById('save-msg');
+    msg.textContent = editingId ? 'Änderungen gespeichert.' : 'Gespeichert.';
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2200);
+    resetForm();
+  });
+
+  loadEntries();
+})();
+</script>

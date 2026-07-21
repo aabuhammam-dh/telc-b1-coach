@@ -1,0 +1,33 @@
+# --- Copyrighted exam material — never commit ---
+# The telc practice exams are copyrighted telc GmbH material. The skills reference
+# them at runtime but must not ship them.
+*.pdf
+*.zip
+exams/
+practice-exams/
+
+# --- Skill build / packaging artifacts ---
+*.skill
+telc-b1-*-workspace/
+dist/
+build/
+
+# --- Extraction scratch (unzipped exams, cleaned OCR) ---
+tmp/
+scratch/
+clean_*.txt
+**/manifest.json
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# --- Editors / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

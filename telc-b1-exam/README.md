@@ -26,6 +26,8 @@ one hands off to automatically.
 | `[practice "Jan"]` | Drill: re-ask your misses + fresh look-alike items, corrected B1-safe. |
 | `[retake "Jan"]` | Timed full simulation, no help during, strict grading after. |
 | `[extract "Jan"]` / `[extract all]` | Mine must-know **vocab (DE→EN)**, **connectors** (+ how each works), and the **critical grammar** the Sprachbausteine tests. |
+| `[mock exam]` / `[generate test]` | **No exam PDF? Generate a fresh, original telc-format practice test** (full or one section) at real B1 difficulty, with an answer key. New content every time. |
+| `[topic "<name>"]` / `[topic]` | **Teach + test one topic** (a grammar point, connectors, or a vocab theme), then give a ready/shaky/not-ready verdict and track it. `[topic]` alone recommends what to train next from your weak spots. |
 | `[weaknesses]` | See your weakness profile across all exams and get targeted drills. |
 | `[compare exams]` | Cross-exam patterns + which past papers reuse the same texts. |
 | `[write "Jan"]` | Work on that exam's **letter** → activates `telc-b1-schreiben`. |
@@ -61,6 +63,8 @@ point blocks and easy to neglect.
   across sessions.
 
 ## What it needs
-- Your practice-exam PDFs available to read (answer keys are on each PDF's last page).
+- **No practice exams? No problem** — use `[mock exam]` and it generates original,
+  telc-format practice for you. Practice-exam PDFs are optional: add them if you have them
+  (answer keys are on the last page) and it'll grade and mine those too.
 - Web access for grammar explanations (it searches, then grounds the answer).
 - The `telc-b1-schreiben` skill installed for anything about the letter.

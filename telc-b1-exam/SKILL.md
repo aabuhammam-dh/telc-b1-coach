@@ -87,6 +87,8 @@ When unsure which file a name maps to, list `/mnt/project/` and match, or ask.
 | `[retake "exam"]` | Full timed simulation in section order; **no help during the task**; strict grading after each section. For T3 image-based ads Claude can't read, point the user to the ADS PAGE in the PDF. |
 | `[compare exams]` | Cross-exam pattern analysis — recurring question types, grammar points, traps, and confirmed question-bank reuse. → `references/error-patterns-and-drills.md`. |
 | `[extract "exam"]` / `[extract all]` | **(vocabulary + connectors + grammar miner)** Analyse one, several, or all templates and produce: must-know vocab (DE→EN), the connectors that appear (with how to use each), and the critical grammar topics the Sprachbausteine is testing. See "The extract command" below. |
+| `[mock exam]` / `[generate test]` | **(original test generator — no PDF needed)** Generate a fresh, original telc-B1-format practice test (full test or one section) at authentic B1 difficulty, with an answer key. Content is written from scratch every time. See "Generating original practice tests" below. |
+| `[topic "<name>"]` / `[topic]` | **(teach + test one high-frequency topic)** Teach a grammar topic, connector set, or vocabulary theme, then run a short readiness check and log a ready/shaky/not-ready verdict. `[topic]` with no name shows the readiness map and recommends what to train from tracked weaknesses. See "Teach & test a topic" below. |
 | `[weaknesses]` | Show the current weakness profile across all logged exams and **design targeted drills** from it. Also runs automatically after each grading. → `references/error-patterns-and-drills.md`. |
 | `[write "exam"]` | **Hand off to the telc-b1-schreiben skill** — do NOT grade or teach the letter here. See "Hand-off" below. |
 | `[help]` / `[commands]` | Print this command list with one-line descriptions. |
@@ -164,6 +166,63 @@ words / connectors / grammar from this test". Steps:
    (`[practice]`) from them.
 
 Keep it exam-useful, not exhaustive — the point is what wins points, not every word.
+
+---
+
+## Generating original practice tests (no PDF needed)
+
+Trigger: `[mock exam]`, `[generate test]`, `[new test]`, or plain requests like "make me a
+practice test" / "I don't have any exam PDFs." This lets people **without their own practice
+exams** still get realistic, unlimited material. Full spec:
+`references/mock-test-generation.md`. In short:
+
+1. Ask **full 60-item test or one section** (Lesen / Sprachbausteine / Hören), and optionally
+   a topic (buttons if available).
+2. **Generate original content** following the telc B1 blueprint (item counts, task types,
+   answer forms) at authentic B1 difficulty, embedding the real trap types written as new
+   items. Numbering is 1–60 so `scripts/score_exam.py` can grade it.
+3. Present the test **without answers first** so the user can actually sit it (or run it as a
+   timed simulation like `[retake]`), then give the key + the score_exam.py JSON, grade, and
+   spin misses into `[weaknesses]` / `[practice]`.
+4. Listening is delivered as **scripts** (a text approximation — Claude can't play audio);
+   enforce "heard once vs. twice" by how many times the script is shown, and say so.
+5. For the **writing** task, generate only the prompt and hand grading to the
+   `telc-b1-schreiben` skill (`/written-examine`).
+
+**⚠ Originality rule (firm — this repo/output is public).** The exam *format* is fine to
+imitate; the *text* of any real telc exam is copyrighted and must **never** be reproduced,
+translated, or lightly reskinned. Write every passage, item, option, and script **from
+scratch** with invented names/places/dates. If the user has PDFs, use them **only** to
+observe format and difficulty, never as a text source. "Inspired by" means same *shape and
+level*, new *content*. If anything might echo a real item too closely, change it.
+`web_search` may be used to **ground/calibrate** generation and as a **novelty check**
+(search a distinctive generated phrase to confirm it's not lifted) — but note that
+"freely available online" ≠ "free to copy": only reproduce genuinely public-domain or
+openly-licensed text, with attribution (see `references/mock-test-generation.md`).
+
+---
+
+## Teach & test a topic (readiness trainer)
+
+Trigger: `[topic "<name>"]`, `[topic]`, or plain language ("teach me the two-way
+prepositions", "quiz me on connectors", "am I ready on Konjunktiv II?"). A **standalone
+teach-then-test loop** on the high-frequency B1 topics — not tied to a specific exam — and
+**personalised from tracked progress**. Full spec: `references/topic-trainer.md`. In short:
+
+1. **`[topic]`** with no name → show the **readiness map** (✅ ready / 🟡 shaky / 🔴 not
+   started per topic) and **recommend the highest-value topic** from the user's tracked
+   weaknesses; offer the menu (grammar topics · connectors · vocabulary themes).
+2. **`[topic "<name>"]`** → **teach** it briefly and grounded (follow the search-first rule
+   below; use the standard teach format), pulling in the user's known errors on that topic;
+   then **test readiness** with a short **original** quiz (5–8 telc-style items embedding the
+   real trap types); then give a **verdict** (✅ ≥80% · 🟡 50–79% · 🔴 <50%) and **log** it to
+   the readiness map. If not ✅, re-teach the missed sub-point and offer another quick check.
+3. Feed misses into the weakness profile so `[practice]` and `[weaknesses]` stay aligned.
+
+Material comes from references already here (grammar → `grammar-for-sprachbausteine.md`,
+connectors → `connectors-bank.md`, vocab → `vocabulary-by-topic.md`); personalisation from
+tracked weaknesses and any `[extract]` output. Generated quiz items follow the originality
+rule above.
 
 ---
 
@@ -246,3 +305,8 @@ Load the relevant one when a command or question calls for it:
   and the must-know/useful/optional convention. **Read for `[extract]` and vocab work.**
 - `references/error-patterns-and-drills.md` — the cross-exam error patterns and how to
   turn logged failures into drills. **Read for `[compare exams]` and `[weaknesses]`.**
+- `references/mock-test-generation.md` — blueprint, difficulty calibration, trap-embedding,
+  and the **originality/copyright rules** for building fresh telc-format tests. **Read for
+  `[mock exam]` / `[generate test]`.**
+- `references/topic-trainer.md` — the topic menu, the teach→test→verdict→log loop, the
+  readiness rubric, and the readiness-map convention. **Read for `[topic]`.**

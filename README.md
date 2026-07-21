@@ -47,7 +47,7 @@ These are Claude Skills. To use them with Claude:
 ```
 telc-b1-coach/
 ├── README.md               # this file
-├── LICENSE                 # MIT — add your name in the copyright line
+├── LICENSE                 # MIT — © 2026 Abdulla Abuhammam
 ├── .gitignore              # keeps exam PDFs and build artifacts out of git
 ├── telc-b1-exam/           # objective sections + oral coach
 │   ├── SKILL.md
@@ -78,4 +78,4 @@ updates this from its own memory as you practise. No personal identifiers are in
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE). Add your name to the copyright line before publishing.
+MIT © 2026 Abdulla Abuhammam — see [`LICENSE`](LICENSE).

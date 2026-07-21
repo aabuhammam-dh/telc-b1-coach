@@ -2,10 +2,18 @@
 
 **🌍 Languages:** **English** · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
 
+![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
+[![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
+![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
+![Price](https://img.shields.io/badge/price-free-brightgreen)
+![Exam](https://img.shields.io/badge/exam-telc_Deutsch_B1-orange)
+
 Two free add-ons ("skills") that turn **Claude** — or another AI that supports skills — into
 a strict, no-nonsense coach for the **telc Deutsch B1** exam. It grades your practice
 answers, explains every mistake, drills your weak spots, prepares you for the speaking test,
 and coaches your writing.
+
+> ⭐ If this helps your prep, **star the repo** — it helps other learners find it.
 
 <p align="center">
   <img src="assets/demo.gif" alt="telc B1 Coach in action — logging answers, grading, and explaining mistakes" width="720">
@@ -33,6 +41,28 @@ Two skills that work together:
 
 You ask for things in plain language (*"grade my answers"*, *"explain weil vs. denn"*,
 *"would this letter pass?"*) or with short commands like `[log exam]` or `/written-grade`.
+
+> [!TIP]
+> No practice exams? Just type `[mock exam]` and it generates original ones.
+
+---
+
+## How it works
+
+```mermaid
+flowchart LR
+  Q{Have a practice exam?}
+  Q -- No --> M["[mock exam]<br/>generate an original test"]
+  Q -- Yes --> L["[log exam]<br/>grade it"]
+  M --> L
+  L --> W["[weaknesses]<br/>find your gaps"]
+  W --> P["[practice] / [topic]<br/>drill + teach"]
+  P --> L
+  W --> S["[write]<br/>letter → Schreiben skill"]
+```
+
+One loop: generate or grade an exam, find your weak spots, drill them, repeat — and split off
+to the writing coach whenever you work on the letter.
 
 ---
 
@@ -73,7 +103,8 @@ matching section below.
 > Team). Uploading here does **not** copy the skills to Claude Code or the API — those are
 > separate (see below). Menu names can vary slightly by version.
 
-### 🟢 Option B — Claude Code (terminal / VS Code / JetBrains)
+<details>
+<summary>🟢 Option B — Claude Code (terminal / VS Code / JetBrains)</summary>
 
 No zipping, no uploading — skills are just folders on your computer.
 
@@ -85,7 +116,10 @@ No zipping, no uploading — skills are just folders on your computer.
 *(Want them only inside one project instead of everywhere? Put the folders in that project's
 `.claude/skills/` folder instead.)*
 
-### 🔵 Option C — Another AI that supports skills (Gemini, Codex, Cursor, Copilot…)
+</details>
+
+<details>
+<summary>🔵 Option C — Another AI that supports skills (Gemini, Codex, Cursor, Copilot…)</summary>
 
 Agent Skills is an **open standard**, so the *same folders* work in many other AI tools.
 There are two cases:
@@ -110,6 +144,8 @@ instructions, so:
 
 This is the universal fallback — it works in essentially any assistant, though the deep
 reference material loads less automatically than it does in Claude.
+
+</details>
 
 ---
 
@@ -139,27 +175,74 @@ and [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
 
 ---
 
+## Why this?
+
+|                                            | Plain AI chat | **telc B1 Coach** | Paid prep course |
+|--------------------------------------------|:-------------:|:-----------------:|:----------------:|
+| Price                                      |     Free      |     **Free**      |       €€€        |
+| Unlimited original practice in telc format |  ⚠️ generic   |        ✅         |   ❌ fixed set   |
+| Grades your answers with answer keys       |      ❌       |        ✅         |        ✅        |
+| Tracks *your* weak spots over time         |      ❌       |        ✅         |   ✅ (tutor)     |
+| Written-letter coaching to the telc rubric |     ⚠️        |        ✅         |        ✅        |
+| Works in your language                     |      ✅       |        ✅         |     varies       |
+
+_Rough guide, not a scientific comparison._
+
+---
+
 ## A couple of things to know
 
-- **You don't need any practice exams to start.** Just say **`[mock exam]`** and the coach
-  generates a fresh, original telc-format practice test for you (full test or one section),
-  at real B1 difficulty, with an answer key — new content every time.
 - **Want official material too?** telc gives you a **free official model exam** — a complete
   test *with answer keys and the listening audio* — on their B1 page. Download it and point
   the coach at it:
   **<https://www.telc.net/sprachpruefungen/deutsch/zertifikat-deutsch-telc-deutsch-b1/>**
   (the page has an English version too). Any telc-format practice exam works; answer keys are
   on the last page.
-- **No copyrighted content here.** This repo contains **no** telc exam text — those exams are
-  copyrighted telc material. The skills generate **original** practice and only ever *read*
-  exam PDFs you supply yourself; they never copy or republish them.
 - **Each app installs separately.** Uploading to the Claude website doesn't sync to Claude
   Code or to other AIs — set up each place you want to use it.
 - **It comes ready to go.** The skills ship with starter content (common exam traps, example
   patterns, a phrase bank) so they're useful immediately; Claude fine-tunes to you as you
   practise. No personal data is included.
 
+> [!NOTE]
+> This is an independent AI study aid that generates **original** practice — it
+> is **not** official telc material and is not affiliated with telc.
+
+---
+
+## FAQ
+
+<details>
+<summary>Is this official telc material?</summary>
+
+No — it's an independent study aid that generates original practice. Not affiliated with telc.
+</details>
+
+<details>
+<summary>Do I need a paid Claude plan?</summary>
+
+No. It works on the free plan, as long as Code execution & file creation is enabled.
+</details>
+
+<details>
+<summary>Does it work in other AIs?</summary>
+
+Yes — it's built on the open Agent Skills standard, so it also runs in Gemini CLI, OpenAI Codex CLI, Cursor, and others.
+</details>
+
+<details>
+<summary>I don't have any practice exams — can I still use it?</summary>
+
+Yes. Type <code>[mock exam]</code> and it generates original telc-format practice with an answer key.
+</details>
+
+---
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE). If you forked or re-published this, add your name to the
 copyright line.
+
+---
+
+> ⭐ If this helps your prep, **star the repo** — it helps other learners find it.

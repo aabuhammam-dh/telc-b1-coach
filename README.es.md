@@ -1,13 +1,21 @@
-<!-- Translated from README.md at commit 2304a0a. Re-translate when the English version changes. -->
+<!-- Translated from README.md at commit 8080cea. Re-translate when the English version changes. -->
 
 # telc B1 Coach 🇩🇪
 
 **🌍 Languages:** [English](README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · **Español**
 
+![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
+[![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
+![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
+![Price](https://img.shields.io/badge/price-free-brightgreen)
+![Exam](https://img.shields.io/badge/exam-telc_Deutsch_B1-orange)
+
 Dos complementos gratuitos ("skills") que convierten a **Claude** —u otra IA que admita skills— en
 un entrenador estricto y sin rodeos para el examen **telc Deutsch B1**. Corrige tus respuestas
 de práctica, explica cada error, ejercita tus puntos débiles, te prepara para la prueba oral
 y entrena tu escritura.
+
+> ⭐ Si esto te ayuda en tu preparación, **dale una estrella al repositorio** — ayuda a que otros estudiantes lo encuentren.
 
 <p align="center">
   <img src="assets/demo.gif" alt="telc B1 Coach en acción — registrando respuestas, corrigiendo y explicando errores" width="720">
@@ -35,6 +43,28 @@ Dos skills que funcionan juntas:
 
 Pides las cosas en lenguaje natural (*"corrige mis respuestas"*, *"explica weil vs. denn"*,
 *"¿aprobaría esta carta?"*) o con comandos cortos como `[log exam]` o `/written-grade`.
+
+> [!TIP]
+> ¿No tienes exámenes de práctica? Solo escribe `[mock exam]` y genera exámenes originales.
+
+---
+
+## Cómo funciona
+
+```mermaid
+flowchart LR
+  Q{Have a practice exam?}
+  Q -- No --> M["[mock exam]<br/>generate an original test"]
+  Q -- Yes --> L["[log exam]<br/>grade it"]
+  M --> L
+  L --> W["[weaknesses]<br/>find your gaps"]
+  W --> P["[practice] / [topic]<br/>drill + teach"]
+  P --> L
+  W --> S["[write]<br/>letter → Schreiben skill"]
+```
+
+Un solo ciclo: genera o corrige un examen, encuentra tus puntos débiles, ejercítalos, repite — y ramifícate
+hacia el entrenador de escritura siempre que trabajes en la carta.
 
 ---
 
@@ -75,7 +105,8 @@ sección correspondiente más abajo.
 > Team). Subirlas aquí **no** copia las skills a Claude Code ni a la API — esos son
 > entornos separados (ver más abajo). Los nombres de los menús pueden variar ligeramente según la versión.
 
-### 🟢 Opción B — Claude Code (terminal / VS Code / JetBrains)
+<details>
+<summary>🟢 Opción B — Claude Code (terminal / VS Code / JetBrains)</summary>
 
 Sin comprimir, sin subir — las skills son simplemente carpetas en tu computadora.
 
@@ -87,7 +118,10 @@ Sin comprimir, sin subir — las skills son simplemente carpetas en tu computado
 *(¿Las quieres solo dentro de un proyecto en lugar de en todas partes? Pon las carpetas en la
 carpeta `.claude/skills/` de ese proyecto en su lugar.)*
 
-### 🔵 Opción C — Otra IA que admita skills (Gemini, Codex, Cursor, Copilot…)
+</details>
+
+<details>
+<summary>🔵 Opción C — Otra IA que admita skills (Gemini, Codex, Cursor, Copilot…)</summary>
 
 Agent Skills es un **estándar abierto**, así que las *mismas carpetas* funcionan en muchas otras
 herramientas de IA. Hay dos casos:
@@ -112,6 +146,8 @@ instrucciones en texto plano, así que:
 
 Esta es la alternativa universal — funciona en esencialmente cualquier asistente, aunque el material
 de referencia detallado se carga de forma menos automática que en Claude.
+
+</details>
 
 ---
 
@@ -141,28 +177,74 @@ y [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
 
 ---
 
+## ¿Por qué esto?
+
+|                                            | Chat de IA normal | **telc B1 Coach** | Curso de preparación de pago |
+|--------------------------------------------|:-------------:|:-----------------:|:----------------:|
+| Precio                                     |     Gratis      |     **Gratis**      |       €€€        |
+| Práctica original ilimitada en formato telc |  ⚠️ genérico   |        ✅         |   ❌ conjunto fijo   |
+| Corrige tus respuestas con claves de respuestas |      ❌       |        ✅         |        ✅        |
+| Sigue *tus* puntos débiles a lo largo del tiempo |      ❌       |        ✅         |   ✅ (tutor)     |
+| Entrenamiento de carta escrita según la rúbrica de telc |     ⚠️        |        ✅         |        ✅        |
+| Funciona en tu idioma                     |      ✅       |        ✅         |     varía       |
+
+_Guía aproximada, no una comparación científica._
+
+---
+
 ## Un par de cosas que debes saber
 
-- **No necesitas ningún examen de práctica para empezar.** Solo di **`[mock exam]`** y el entrenador
-  te genera un examen de práctica nuevo y original en formato telc (examen completo o una sola sección),
-  con dificultad B1 real y una clave de respuestas — contenido nuevo cada vez.
 - **¿Quieres material oficial también?** telc te ofrece un **examen modelo oficial gratuito** —una prueba
   completa *con claves de respuestas y el audio de comprensión auditiva*— en su página de B1. Descárgalo y
   apunta el entrenador hacia él:
   **<https://www.telc.net/sprachpruefungen/deutsch/zertifikat-deutsch-telc-deutsch-b1/>**
   (la página también tiene versión en inglés). Cualquier examen de práctica en formato telc sirve; las
   claves de respuestas están en la última página.
-- **Aquí no hay contenido protegido por derechos de autor.** Este repositorio **no** contiene texto de
-  exámenes telc — esos exámenes son material de telc protegido por derechos de autor. Las skills generan
-  práctica **original** y solo *leen* los PDFs de examen que tú mismo proporcionas; nunca los copian ni
-  los republican.
 - **Cada app se instala por separado.** Subirlas al sitio web de Claude no las sincroniza con Claude
   Code ni con otras IAs — configúralas en cada lugar donde quieras usarlas.
-- **Vienen listas para usar.** Las skills incluyen contenido inicial (trampas habituales del examen,
+- **Viene listo para usar.** Las skills incluyen contenido inicial (trampas habituales del examen,
   patrones de ejemplo, un banco de frases) para que sean útiles de inmediato; Claude se ajusta a ti a
   medida que practicas. No se incluye ningún dato personal.
+
+> [!NOTE]
+> Esto es una ayuda de estudio con IA independiente que genera práctica **original** — **no**
+> es material oficial de telc y no está afiliado a telc.
+
+---
+
+## Preguntas frecuentes
+
+<details>
+<summary>¿Es este material oficial de telc?</summary>
+
+No — es una ayuda de estudio independiente que genera práctica original. No está afiliada a telc.
+</details>
+
+<details>
+<summary>¿Necesito un plan de pago de Claude?</summary>
+
+No. Funciona en el plan gratuito, siempre que la Ejecución de código y creación de archivos esté habilitada.
+</details>
+
+<details>
+<summary>¿Funciona en otras IAs?</summary>
+
+Sí — está construido sobre el estándar abierto Agent Skills, así que también funciona en Gemini CLI, OpenAI Codex CLI, Cursor y otras.
+</details>
+
+<details>
+<summary>No tengo ningún examen de práctica — ¿puedo usarlo igualmente?</summary>
+
+Sí. Escribe <code>[mock exam]</code> y genera práctica original en formato telc con una clave de respuestas.
+</details>
+
+---
 
 ## Licencia
 
 MIT — consulta [`LICENSE`](LICENSE). Si hiciste un fork o republicaste esto, añade tu nombre a la
 línea de copyright.
+
+---
+
+> ⭐ Si esto te ayuda en tu preparación, **dale una estrella al repositorio** — ayuda a que otros estudiantes lo encuentren.

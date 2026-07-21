@@ -1,5 +1,7 @@
 # telc B1 Coach 🇩🇪
 
+**🌍 Languages:** **English** · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
+
 Two free add-ons ("skills") that turn **Claude** — or another AI that supports skills — into
 a strict, no-nonsense coach for the **telc Deutsch B1** exam. It grades your practice
 answers, explains every mistake, drills your weak spots, prepares you for the speaking test,

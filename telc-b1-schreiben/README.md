@@ -1,5 +1,7 @@
 # telc-b1-schreiben — how to use it
 
+**🌍 Languages:** **English** · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
+
 Your strict coach for the **written letter** of the telc **Deutsch B1** exam (the
 *Schriftlicher Ausdruck* — the one hand-written reply-letter/email). It teaches the format
 and the exact telc grading rubric, hands you exam-format tasks, grades your letters the way

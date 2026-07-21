@@ -5,6 +5,10 @@ a strict, no-nonsense coach for the **telc Deutsch B1** exam. It grades your pra
 answers, explains every mistake, drills your weak spots, prepares you for the speaking test,
 and coaches your writing.
 
+<p align="center">
+  <img src="assets/demo.gif" alt="telc B1 Coach in action — logging answers, grading, and explaining mistakes" width="720">
+</p>
+
 > For the general **telc Deutsch B1** exam (the adult *Zertifikat Deutsch*). **Not** the DTZ,
 > and not Goethe B1.
 

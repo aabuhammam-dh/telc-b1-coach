@@ -19,7 +19,7 @@ y entrena tu escritura.
 > ⭐ Si esto te ayuda en tu preparación, **dale una estrella al repositorio** — ayuda a que otros estudiantes lo encuentren.
 
 <p align="center">
-  <img src="assets/demo.gif" alt="telc B1 Coach en acción — registrando respuestas, corrigiendo y explicando errores" width="720">
+  <img src="../assets/demo.gif" alt="telc B1 Coach en acción — registrando respuestas, corrigiendo y explicando errores" width="720">
 </p>
 
 > Para el examen general **telc Deutsch B1** (el *Zertifikat Deutsch* para adultos). **No** es el DTZ,
@@ -262,7 +262,7 @@ Sí. Escribe <code>[mock exam]</code> y genera práctica original en formato tel
 
 ## Licencia
 
-MIT — consulta [`LICENSE`](LICENSE). Si hiciste un fork o republicaste esto, añade tu nombre a la
+MIT — consulta [`LICENSE`](../LICENSE). Si hiciste un fork o republicaste esto, añade tu nombre a la
 línea de copyright.
 
 ---

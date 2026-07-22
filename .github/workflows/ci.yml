@@ -39,3 +39,5 @@ jobs:
         with:
           args: "--no-progress --accept 200,206,429 --max-concurrency 4 './**/*.md'"
           fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

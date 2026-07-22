@@ -16,7 +16,7 @@
 > ⭐ Bu, hazırlığınıza yardımcı oluyorsa **depoya yıldız verin** — bu, diğer öğrencilerin onu bulmasına yardımcı olur.
 
 <p align="center">
-  <img src="assets/demo.gif" alt="telc B1 Koçu iş başında — yanıtları kaydediyor, puanlıyor ve hataları açıklıyor" width="720">
+  <img src="../assets/demo.gif" alt="telc B1 Koçu iş başında — yanıtları kaydediyor, puanlıyor ve hataları açıklıyor" width="720">
 </p>
 
 > Genel **telc Deutsch B1** sınavı (yetişkinlere yönelik *Zertifikat Deutsch*) içindir. DTZ **değildir**
@@ -256,7 +256,7 @@ Evet. <code>[mock exam]</code> yazın, o da cevap anahtarıyla birlikte özgün 
 
 ## Lisans
 
-MIT — bkz. [`LICENSE`](LICENSE). Bunu fork'ladıysanız veya yeniden yayınladıysanız, telif hakkı
+MIT — bkz. [`LICENSE`](../LICENSE). Bunu fork'ladıysanız veya yeniden yayınladıysanız, telif hakkı
 satırına adınızı ekleyin.
 
 ---

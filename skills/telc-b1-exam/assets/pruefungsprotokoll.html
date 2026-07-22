@@ -366,6 +366,98 @@
     font-size: 12px;
   }
 
+  /* Per-question answer inputs (Lesen/SB) */
+  #protokoll-root .answer-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #protokoll-root .answer-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border: 1.5px solid var(--paper-line);
+    border-radius: var(--radius);
+    background: var(--paper);
+  }
+  #protokoll-root .answer-row .qn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--ink-soft);
+    min-width: 28px;
+  }
+  #protokoll-root .answer-row select, #protokoll-root .answer-row input[type=text].answer-input {
+    flex: 1;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    padding: 6px 8px;
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+  }
+  #protokoll-root .answer-row .verdict {
+    width: 20px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  #protokoll-root .answer-row.correct {
+    border-color: var(--stamp-green);
+    background: var(--stamp-green-bg);
+  }
+  #protokoll-root .answer-row.correct .verdict { color: var(--stamp-green); }
+  #protokoll-root .answer-row.incorrect {
+    border-color: var(--stamp-red);
+    background: var(--stamp-red-bg);
+  }
+  #protokoll-root .answer-row.incorrect .verdict { color: var(--stamp-red); }
+
+  /* Export box */
+  #protokoll-root .export-box {
+    margin-top: 14px;
+    padding: 12px;
+    background: var(--paper);
+    border: 1px dashed var(--paper-line);
+    border-radius: var(--radius);
+  }
+  #protokoll-root .export-box .export-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  #protokoll-root .export-box textarea {
+    width: 100%;
+    min-height: 70px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 8px;
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    resize: vertical;
+  }
+  #protokoll-root .export-actions {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #protokoll-root .copy-msg {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--stamp-green);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  #protokoll-root .copy-msg.show { opacity: 1; }
+
   @media (max-width: 560px) {
     #protokoll-root .totals { grid-template-columns: repeat(2, 1fr); }
     #protokoll-root .totals .t:nth-child(2) { border-right: none; }
@@ -408,29 +500,33 @@
 
     <div class="section">
       <div class="section-title"><h2>Leseverstehen</h2><span class="max">20 Punkte</span></div>
-      <div class="teil-row">
-        <div class="teil-name">Teil 1 <span class="n">(1–5)</span></div>
-        <select class="score-select" id="lesen-t1" data-max="5"></select>
-      </div>
-      <div class="teil-row">
-        <div class="teil-name">Teil 2 <span class="n">(6–10)</span></div>
-        <select class="score-select" id="lesen-t2" data-max="5"></select>
-      </div>
-      <div class="teil-row">
-        <div class="teil-name">Teil 3 <span class="n">(11–20)</span></div>
-        <select class="score-select" id="lesen-t3" data-max="10"></select>
+      <div class="hoeren-group">
+        <div>
+          <div class="hoeren-teil-label">Teil 1 (Fragen 1–5) — Überschrift wählen</div>
+          <div class="answer-rows" id="stamp-lesen-t1"></div>
+        </div>
+        <div>
+          <div class="hoeren-teil-label">Teil 2 (Fragen 6–10) — a/b/c wählen</div>
+          <div class="answer-rows" id="stamp-lesen-t2"></div>
+        </div>
+        <div>
+          <div class="hoeren-teil-label">Teil 3 (Fragen 11–20) — Anzeige a–l oder x (Anzeigen-Seite im PDF prüfen)</div>
+          <div class="answer-rows" id="stamp-lesen-t3"></div>
+        </div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-title"><h2>Sprachbausteine</h2><span class="max">20 Punkte</span></div>
-      <div class="teil-row">
-        <div class="teil-name">Teil 1 <span class="n">(21–30)</span></div>
-        <select class="score-select" id="sb-t1" data-max="10"></select>
-      </div>
-      <div class="teil-row">
-        <div class="teil-name">Teil 2 <span class="n">(31–40)</span></div>
-        <select class="score-select" id="sb-t2" data-max="10"></select>
+      <div class="hoeren-group">
+        <div>
+          <div class="hoeren-teil-label">Teil 1 (Fragen 21–30) — Wort wählen</div>
+          <div class="answer-rows" id="stamp-sb-t1"></div>
+        </div>
+        <div>
+          <div class="hoeren-teil-label">Teil 2 (Fragen 31–40) — Wortliste (jedes Wort nur einmal)</div>
+          <div class="answer-rows" id="stamp-sb-t2"></div>
+        </div>
       </div>
     </div>
 
@@ -439,24 +535,32 @@
       <div class="hoeren-group">
         <div>
           <div class="hoeren-teil-label">Teil 1 (Fragen 41–45)</div>
-          <div class="stamp-grid" id="hoeren-t1"></div>
+          <div class="stamp-grid" id="stamp-hoeren-t1"></div>
         </div>
         <div>
           <div class="hoeren-teil-label">Teil 2 (Fragen 46–55) — Fallen-Bereich</div>
-          <div class="stamp-grid" id="hoeren-t2"></div>
+          <div class="stamp-grid" id="stamp-hoeren-t2"></div>
         </div>
         <div>
           <div class="hoeren-teil-label">Teil 3 (Fragen 56–60)</div>
-          <div class="stamp-grid" id="hoeren-t3"></div>
+          <div class="stamp-grid" id="stamp-hoeren-t3"></div>
         </div>
       </div>
       <div class="legend">
         <span><i class="dot" style="color:var(--stamp-green)"></i>richtig</span>
         <span><i class="dot" style="color:var(--stamp-red)"></i>falsch</span>
         <span><i class="dot" style="color:var(--stamp-gray)"></i>noch offen</span>
-        <span style="color:var(--ink-soft)">Klicken zum Durchschalten: offen → richtig → falsch</span>
+        <span style="color:var(--ink-soft)">Klicken zum Durchschalten (jede Frage in jeder Sektion): offen → richtig → falsch</span>
       </div>
-      <div class="warn-banner" id="hoeren-warn">⚠ Es sind noch Fragen im Hörverstehen offen (·). Bitte alle markieren, bevor du speicherst — sonst fehlen sie in der Fehleranalyse.</div>
+      <div class="warn-banner" id="items-warn">⚠ Es sind noch Fragen offen (·) — nicht nur im Hörverstehen, auch in Lesen und Sprachbausteine. Bitte alle 60 markieren, bevor du speicherst — sonst fehlen sie in der Fehleranalyse.</div>
+      <div class="export-box">
+        <div class="export-label">Antworten exportieren (zum Einfügen im Chat für die Bewertung)</div>
+        <textarea id="export-text" readonly onclick="this.select()"></textarea>
+        <div class="export-actions">
+          <button type="button" id="copy-export-btn" class="secondary">In Zwischenablage kopieren</button>
+          <span class="copy-msg" id="copy-msg">Kopiert.</span>
+        </div>
+      </div>
     </div>
 
     <div class="section">
@@ -504,81 +608,174 @@
   const root = document.getElementById('protokoll-root');
   const STORAGE_KEY = 'examlog:entries';
 
-  const lesenSelects = {
-    t1: document.getElementById('lesen-t1'),
-    t2: document.getElementById('lesen-t2'),
-    t3: document.getElementById('lesen-t3'),
-  };
-  const sbSelects = {
-    t1: document.getElementById('sb-t1'),
-    t2: document.getElementById('sb-t2'),
-  };
+  // Teil definitions, matching scripts/score_exam.py's TEILE ranges exactly:
+  // [label, start, end, top-level section, DOM container id, input kind]
+  // input kind: 'hoeren' (+/- toggle), 'options' (dropdown from EXAM_DATA),
+  // or 'text' (free-text fallback when no options are known for a question).
+  const TEILE = [
+    ['Leseverstehen T1', 1, 5, 'lesen', 'stamp-lesen-t1', 'options'],
+    ['Leseverstehen T2', 6, 10, 'lesen', 'stamp-lesen-t2', 'options'],
+    ['Leseverstehen T3', 11, 20, 'lesen', 'stamp-lesen-t3', 'options'],
+    ['Sprachbausteine T1', 21, 30, 'sb', 'stamp-sb-t1', 'options'],
+    ['Sprachbausteine T2', 31, 40, 'sb', 'stamp-sb-t2', 'options'],
+    ['Hoerverstehen T1', 41, 45, 'hoeren', 'stamp-hoeren-t1', 'hoeren'],
+    ['Hoerverstehen T2', 46, 55, 'hoeren', 'stamp-hoeren-t2', 'hoeren'],
+    ['Hoerverstehen T3', 56, 60, 'hoeren', 'stamp-hoeren-t3', 'hoeren'],
+  ];
 
-  function fillSelect(sel, max) {
-    sel.innerHTML = '';
-    for (let i = 0; i <= max; i++) {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = i + ' / ' + max;
-      sel.appendChild(opt);
+  // Injected per exam by Claude when presenting this dashboard for a
+  // specific exam. Empty by default so the dashboard still works as a
+  // generic, blank logger if opened without exam-specific data.
+  //
+  //   EXAM_DATA.questions[q] = [{value:'A', label:'A) ...'}, ...]
+  //   EXAM_DATA.key[q] = 'A'   (verified correct answer, optional)
+  //
+  // EXAM_DATA_INJECT
+  const EXAM_DATA = (window.__EXAM_DATA__) || { questions: {}, key: {} };
+
+  // state per question number (1-60) -> the raw value the user selected/
+  // typed/toggled. For Hoeren this is '.', '+', '-'. For Lesen/SB this is
+  // '.' (unanswered) or whatever letter/word value they chose.
+  let itemState = {};
+
+  function fallbackOptions(sec, start, end, q) {
+    // No exam-specific data injected: fall back to a sensible generic
+    // input so the dashboard still functions on its own.
+    if (sec === 'sb' && start === 21) {
+      return [['a','a'], ['b','b'], ['c','c']]; // SB T1 is always a/b/c
     }
-    sel.value = 0;
+    if (start === 6 && end === 10) {
+      return [['a','a'], ['b','b'], ['c','c']]; // Lesen T2 is always a/b/c
+    }
+    return null; // Lesen T1/T3 and SB T2 vary by exam -> free text fallback
   }
-  fillSelect(lesenSelects.t1, 5);
-  fillSelect(lesenSelects.t2, 5);
-  fillSelect(lesenSelects.t3, 10);
-  fillSelect(sbSelects.t1, 10);
-  fillSelect(sbSelects.t2, 10);
 
-  // Hören question ranges
-  const hoerenRanges = {
-    t1: { start: 41, end: 45, el: document.getElementById('hoeren-t1') },
-    t2: { start: 46, end: 55, el: document.getElementById('hoeren-t2') },
-    t3: { start: 56, end: 60, el: document.getElementById('hoeren-t3') },
-  };
-  // state per question number -> '.', '+', '-'
-  let hoerenState = {};
-
-  function buildStamps() {
-    Object.values(hoerenRanges).forEach(({ start, end, el }) => {
+  function buildInputs() {
+    TEILE.forEach(([label, start, end, sec, containerId, kind]) => {
+      const el = document.getElementById(containerId);
       el.innerHTML = '';
       for (let q = start; q <= end; q++) {
-        hoerenState[q] = hoerenState[q] || '.';
-        const btn = document.createElement('div');
-        btn.className = 'stamp';
-        btn.tabIndex = 0;
-        btn.dataset.q = q;
-        btn.innerHTML = '<span class="mark">·</span><span class="qn">' + q + '</span>';
-        btn.addEventListener('click', () => cycleStamp(q));
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cycleStamp(q); }
-        });
-        el.appendChild(btn);
+        itemState[q] = itemState[q] || '.';
+
+        if (kind === 'hoeren') {
+          const btn = document.createElement('div');
+          btn.className = 'stamp';
+          btn.tabIndex = 0;
+          btn.dataset.q = q;
+          btn.innerHTML = '<span class="mark">·</span><span class="qn">' + q + '</span>';
+          btn.addEventListener('click', () => cycleStamp(q));
+          btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cycleStamp(q); }
+          });
+          // Hoeren stamps live in their own dedicated grid, not answer-rows
+          if (!el.classList.contains('stamp-grid')) el.classList.add('stamp-grid');
+          el.appendChild(btn);
+          continue;
+        }
+
+        const row = document.createElement('div');
+        row.className = 'answer-row';
+        row.dataset.q = q;
+
+        const qn = document.createElement('div');
+        qn.className = 'qn';
+        qn.textContent = q;
+        row.appendChild(qn);
+
+        const injected = EXAM_DATA.questions && EXAM_DATA.questions[q];
+        const options = injected || fallbackOptions(sec, start, end, q);
+
+        let inputEl;
+        if (options) {
+          inputEl = document.createElement('select');
+          const blank = document.createElement('option');
+          blank.value = '.';
+          blank.textContent = '— wählen —';
+          inputEl.appendChild(blank);
+          options.forEach(opt => {
+            const value = Array.isArray(opt) ? opt[0] : opt.value;
+            const label = Array.isArray(opt) ? opt[1] : opt.label;
+            const o = document.createElement('option');
+            o.value = value;
+            o.textContent = label;
+            inputEl.appendChild(o);
+          });
+          inputEl.value = itemState[q];
+          inputEl.addEventListener('change', () => setAnswer(q, inputEl.value));
+        } else {
+          inputEl = document.createElement('input');
+          inputEl.type = 'text';
+          inputEl.className = 'answer-input';
+          inputEl.placeholder = 'Antwort (z. B. a, b, x)';
+          inputEl.value = itemState[q] === '.' ? '' : itemState[q];
+          inputEl.addEventListener('input', () => setAnswer(q, inputEl.value.trim() || '.'));
+        }
+        row.appendChild(inputEl);
+
+        const verdict = document.createElement('div');
+        verdict.className = 'verdict';
+        verdict.textContent = '';
+        row.appendChild(verdict);
+
+        el.appendChild(row);
       }
     });
   }
 
-  function renderStamps() {
+  function setAnswer(q, value) {
+    itemState[q] = value;
+    renderVerdicts();
+    updateTotals();
+    updateExport();
+  }
+
+  function renderVerdicts() {
+    // Hoeren stamps
     root.querySelectorAll('.stamp').forEach(btn => {
       const q = btn.dataset.q;
-      const state = hoerenState[q];
+      const state = itemState[q];
       btn.classList.remove('correct', 'incorrect');
       const mark = btn.querySelector('.mark');
       if (state === '+') { btn.classList.add('correct'); mark.textContent = '✓'; }
       else if (state === '-') { btn.classList.add('incorrect'); mark.textContent = '✗'; }
       else { mark.textContent = '·'; }
+      const key = EXAM_DATA.key && EXAM_DATA.key[q];
+      btn.classList.remove('correct', 'incorrect');
+      if (key && state !== '.') {
+        const ok = normalize(state) === normalize(key);
+        btn.classList.add(ok ? 'correct' : 'incorrect');
+      }
+    });
+    // Lesen/SB answer rows
+    root.querySelectorAll('.answer-row').forEach(row => {
+      const q = row.dataset.q;
+      const state = itemState[q];
+      const verdict = row.querySelector('.verdict');
+      row.classList.remove('correct', 'incorrect');
+      verdict.textContent = '';
+      const key = EXAM_DATA.key && EXAM_DATA.key[q];
+      if (key && state && state !== '.') {
+        const ok = normalize(state) === normalize(key);
+        row.classList.add(ok ? 'correct' : 'incorrect');
+        verdict.textContent = ok ? '✓' : '✗';
+      }
     });
   }
 
-  function cycleStamp(q) {
-    const cur = hoerenState[q];
-    hoerenState[q] = cur === '.' ? '+' : (cur === '+' ? '-' : '.');
-    renderStamps();
-    updateTotals();
+  function normalize(v) {
+    return String(v).trim().toLowerCase();
   }
 
-  buildStamps();
-  renderStamps();
+  function cycleStamp(q) {
+    const cur = itemState[q];
+    itemState[q] = cur === '.' ? '+' : (cur === '+' ? '-' : '.');
+    renderVerdicts();
+    updateTotals();
+    updateExport();
+  }
+
+  buildInputs();
+  renderVerdicts();
 
   const schreibenStatus = document.getElementById('schreiben-status');
   const schreibenScoreField = document.getElementById('schreiben-score-field');
@@ -587,17 +784,42 @@
     schreibenScoreField.style.display = schreibenStatus.value === 'bewertet' ? 'flex' : 'none';
   });
 
-  function hoerenCorrectCount() {
-    return Object.values(hoerenState).filter(v => v === '+').length;
+  function isAnswered(q) { return itemState[q] && itemState[q] !== '.'; }
+  function isCorrect(q) {
+    const key = EXAM_DATA.key && EXAM_DATA.key[q];
+    if (!key || !isAnswered(q)) return false;
+    return normalize(itemState[q]) === normalize(key);
   }
-  function hoerenUnsetCount() {
-    return Object.values(hoerenState).filter(v => v === '.').length;
+  function countAnswered(start, end) {
+    let c = 0;
+    for (let q = start; q <= end; q++) if (isAnswered(q)) c++;
+    return c;
+  }
+  function countCorrect(start, end) {
+    let c = 0;
+    for (let q = start; q <= end; q++) if (isCorrect(q)) c++;
+    return c;
+  }
+  function countUnset() {
+    let c = 0;
+    for (let q = 1; q <= 60; q++) if (!isAnswered(q)) c++;
+    return c;
+  }
+  function sectionCorrect(sec) {
+    return TEILE.filter(t => t[3] === sec).reduce((sum, [, s, e]) => sum + countCorrect(s, e), 0);
+  }
+  function sectionAnswered(sec) {
+    return TEILE.filter(t => t[3] === sec).reduce((sum, [, s, e]) => sum + countAnswered(s, e), 0);
+  }
+  function hasAnyKey() {
+    return EXAM_DATA.key && Object.keys(EXAM_DATA.key).length > 0;
   }
 
   function updateTotals() {
-    const l = Number(lesenSelects.t1.value) + Number(lesenSelects.t2.value) + Number(lesenSelects.t3.value);
-    const s = Number(sbSelects.t1.value) + Number(sbSelects.t2.value);
-    const h = hoerenCorrectCount();
+    const graded = hasAnyKey();
+    const l = graded ? sectionCorrect('lesen') : sectionAnswered('lesen');
+    const s = graded ? sectionCorrect('sb') : sectionAnswered('sb');
+    const h = graded ? sectionCorrect('hoeren') : sectionAnswered('hoeren');
     const g = l + s + h;
     document.getElementById('total-lesen').textContent = l + '/20';
     document.getElementById('total-sb').textContent = s + '/20';
@@ -606,18 +828,48 @@
 
     const badgeNum = document.getElementById('stamp-badge-num');
     const badge = document.getElementById('stamp-badge');
+    const badgeText = document.getElementById('stamp-badge-text');
     badgeNum.textContent = g + '/60';
-    const pass = g >= 36; // 60% of 60, matches telc 60% pass logic for objective part
-    badge.style.color = pass ? 'var(--stamp-green)' : 'var(--stamp-red)';
+    badgeText.textContent = graded ? 'objektiver Teil' : 'beantwortet';
+    const pass = graded ? g >= 36 : true;
+    badge.style.color = graded ? (pass ? 'var(--stamp-green)' : 'var(--stamp-red)') : 'var(--ink-soft)';
 
-    const warn = document.getElementById('hoeren-warn');
-    warn.classList.toggle('show', hoerenUnsetCount() > 0);
+    const warn = document.getElementById('items-warn');
+    warn.classList.toggle('show', countUnset() > 0);
   }
-
-  [lesenSelects.t1, lesenSelects.t2, lesenSelects.t3, sbSelects.t1, sbSelects.t2].forEach(sel => {
-    sel.addEventListener('change', updateTotals);
-  });
   updateTotals();
+
+  function updateExport() {
+    const parts = [];
+    for (let q = 1; q <= 60; q++) {
+      parts.push(q + ':' + (itemState[q] === '.' ? '?' : itemState[q]));
+    }
+    const box = document.getElementById('export-text');
+    if (box) box.value = parts.join(', ');
+  }
+  updateExport();
+
+  const copyBtn = document.getElementById('copy-export-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const box = document.getElementById('export-text');
+      box.select();
+      let copied = false;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(box.value);
+          copied = true;
+        }
+      } catch (err) { copied = false; }
+      if (!copied) {
+        try { copied = document.execCommand('copy'); } catch (err) { copied = false; }
+      }
+      const msg = document.getElementById('copy-msg');
+      msg.textContent = copied ? 'Kopiert.' : 'Bitte manuell kopieren (markiert).';
+      msg.classList.add('show');
+      setTimeout(() => msg.classList.remove('show'), 2200);
+    });
+  }
 
   // default date = today
   document.getElementById('exam-date').value = new Date().toISOString().slice(0, 10);
@@ -649,6 +901,36 @@
 
   function pct(val, max) { return max === 0 ? 0 : val / max; }
 
+  // Supports the current per-item ("items") shape, an older per-item
+  // correct/incorrect-only shape, and the oldest aggregate-dropdown shape,
+  // so history saved before either fix still displays correctly.
+  function entryTotals(entry) {
+    if (entry.items && entry.key) {
+      const totalFor = (sec) => TEILE.filter(t => t[3] === sec).reduce((sum, [, s, e]) => {
+        let c = 0;
+        for (let q = s; q <= e; q++) {
+          const v = entry.items[q];
+          const k = entry.key[q];
+          if (v && k && String(v).trim().toLowerCase() === String(k).trim().toLowerCase()) c++;
+        }
+        return sum + c;
+      }, 0);
+      return { l: totalFor('lesen'), s: totalFor('sb'), h: totalFor('hoeren') };
+    }
+    if (entry.items) {
+      const totalFor = (sec) => TEILE.filter(t => t[3] === sec).reduce((sum, [, s, e]) => {
+        let c = 0;
+        for (let q = s; q <= e; q++) if (entry.items[q] === '+') c++;
+        return sum + c;
+      }, 0);
+      return { l: totalFor('lesen'), s: totalFor('sb'), h: totalFor('hoeren') };
+    }
+    const l = entry.lesen ? entry.lesen.t1 + entry.lesen.t2 + entry.lesen.t3 : 0;
+    const s = entry.sb ? entry.sb.t1 + entry.sb.t2 : 0;
+    const h = entry.hoeren ? Object.values(entry.hoeren).filter(v => v === '+').length : 0;
+    return { l, s, h };
+  }
+
   function renderHistory() {
     const table = document.getElementById('history-table');
     const empty = document.getElementById('history-empty');
@@ -666,9 +948,7 @@
     const sorted = [...entries].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
     sorted.forEach(entry => {
-      const l = entry.lesen.t1 + entry.lesen.t2 + entry.lesen.t3;
-      const s = entry.sb.t1 + entry.sb.t2;
-      const h = Object.values(entry.hoeren).filter(v => v === '+').length;
+      const { l, s, h } = entryTotals(entry);
       const g = l + s + h;
       const schreibenText = entry.schreibenStatus === 'bewertet'
         ? (entry.schreibenScore || '—')
@@ -705,23 +985,33 @@
     return div.innerHTML;
   }
 
+  function applyItemStateToInputs() {
+    root.querySelectorAll('.answer-row').forEach(row => {
+      const q = row.dataset.q;
+      const input = row.querySelector('select, input');
+      if (input) input.value = itemState[q] === '.' ? (input.tagName === 'SELECT' ? '.' : '') : itemState[q];
+    });
+  }
+
   function loadIntoForm(id) {
     const entry = entries.find(e => e.id === id);
     if (!entry) return;
     editingId = id;
     document.getElementById('exam-name').value = entry.name;
     document.getElementById('exam-date').value = entry.date;
-    lesenSelects.t1.value = entry.lesen.t1;
-    lesenSelects.t2.value = entry.lesen.t2;
-    lesenSelects.t3.value = entry.lesen.t3;
-    sbSelects.t1.value = entry.sb.t1;
-    sbSelects.t2.value = entry.sb.t2;
-    hoerenState = Object.assign({}, entry.hoeren);
-    renderStamps();
+    if (entry.items) {
+      itemState = Object.assign({}, entry.items);
+    } else {
+      itemState = Object.assign({}, entry.hoeren || {});
+    }
+    buildInputs();
+    applyItemStateToInputs();
+    renderVerdicts();
     schreibenStatus.value = entry.schreibenStatus || 'ausstehend';
     schreibenScoreField.style.display = schreibenStatus.value === 'bewertet' ? 'flex' : 'none';
     schreibenScore.value = entry.schreibenScore || '';
     updateTotals();
+    updateExport();
     document.getElementById('save-btn').textContent = 'Änderungen speichern';
     root.scrollIntoView({ behavior: 'smooth' });
   }
@@ -737,15 +1027,14 @@
     editingId = null;
     document.getElementById('exam-name').value = '';
     document.getElementById('exam-date').value = new Date().toISOString().slice(0, 10);
-    lesenSelects.t1.value = 0; lesenSelects.t2.value = 0; lesenSelects.t3.value = 0;
-    sbSelects.t1.value = 0; sbSelects.t2.value = 0;
-    hoerenState = {};
-    buildStamps();
-    renderStamps();
+    itemState = {};
+    buildInputs();
+    renderVerdicts();
     schreibenStatus.value = 'ausstehend';
     schreibenScoreField.style.display = 'none';
     schreibenScore.value = '';
     updateTotals();
+    updateExport();
     document.getElementById('save-btn').textContent = 'Prüfung speichern';
   }
 
@@ -757,8 +1046,8 @@
       alert('Bitte gib einen Namen für die Prüfung ein.');
       return;
     }
-    if (hoerenUnsetCount() > 0) {
-      const proceed = confirm('Es sind noch ' + hoerenUnsetCount() + ' Hörverstehen-Fragen offen (·). Trotzdem speichern?');
+    if (countUnset() > 0) {
+      const proceed = confirm('Es sind noch ' + countUnset() + ' Fragen offen. Trotzdem speichern?');
       if (!proceed) return;
     }
 
@@ -766,16 +1055,8 @@
       id: editingId || (Date.now().toString(36) + Math.random().toString(36).slice(2, 6)),
       name,
       date: document.getElementById('exam-date').value,
-      lesen: {
-        t1: Number(lesenSelects.t1.value),
-        t2: Number(lesenSelects.t2.value),
-        t3: Number(lesenSelects.t3.value),
-      },
-      sb: {
-        t1: Number(sbSelects.t1.value),
-        t2: Number(sbSelects.t2.value),
-      },
-      hoeren: Object.assign({}, hoerenState),
+      items: Object.assign({}, itemState),
+      key: Object.assign({}, EXAM_DATA.key || {}),
       schreibenStatus: schreibenStatus.value,
       schreibenScore: schreibenStatus.value === 'bewertet' ? schreibenScore.value.trim() : '',
     };

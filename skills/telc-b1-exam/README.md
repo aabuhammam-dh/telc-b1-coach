@@ -19,7 +19,7 @@ one hands off to automatically.
 ## Commands (cheat-sheet)
 | Command | Use it to |
 |---|---|
-| `[log exam]` | Enter your answers to one exam and get it **graded** (code-checked, never eyeballed). |
+| `[log exam]` | Give your real per-question answers in chat and get it **graded** (code-checked, never eyeballed) — the coach then always shows the tracking dashboard pre-filled with the result. |
 | `[score "Jan"]` | See a stored exam's score, weak areas, and what's still pending. |
 | `[discuss "Jan"]` | Walk every wrong answer: the correct one, the trap type, the rule. |
 | `[study "Jan"]` | A teaching session on that exam's grammar, vocab, connectors, traps. |

@@ -13,9 +13,6 @@ description: >-
   words from this test", "drill my Hörverstehen traps", or naming an exam.
   Authoritative for telc B1 strategy, scoring, and section tactics. Does NOT teach or
   correct the Schreiben letter — for that it activates telc-b1-schreiben.
-license: MIT
-metadata:
-  version: "2.0.0"
 ---
 
 # telc Deutsch B1 — Exam Coach (objective sections + oral)
@@ -82,7 +79,7 @@ When unsure which file a name maps to, list `/mnt/project/` and match, or ask.
 
 | Command | What it does |
 |---|---|
-| `[log exam]` | Log the user's answers to one exam and **grade** them with the mandatory code-based process. Offer the logging dashboard artifact. See "Scoring" below. |
+| `[log exam]` | End-to-end: collect the user's real per-item answers (1–60) in chat, grade with the mandatory code-based process, **then always present the logging dashboard artifact pre-filled with the result.** Never optional, never skipped. See "Scoring" below. |
 | `[score "exam"]` | Show the stored score summary, weak areas, and pending sections for that exam. No re-grading unless asked. |
 | `[discuss "exam"]` / `[analyze "exam"]` | Review **every miss** in a graded exam: the correct answer, the trap type, and the rule/pattern behind it. → `references/section-strategies.md` for trap taxonomy. |
 | `[study "exam"]` | Teaching session on that exam's content: grammar patterns, vocab, connectors, trap types, memorisation phrases. |
@@ -106,6 +103,20 @@ exam, and for **grammar explanations follow the web-search rule below.**
 Eyeballing a comparison table drifts toward false agreement and has produced fabricated
 scores before. **Always grade with the script.** Procedure:
 
+0. **Immediately present the logging dashboard, `assets/pruefungsprotokoll.html`, as an
+   artifact — in the same turn `[log exam]` is invoked, before anything else.** Pre-fill
+   the exam-name field with the exam's name if known. This is not a nice-to-have: the
+   user should see a working tool the instant they invoke the command, not only after a
+   multi-step text exchange. Steps 1–6 (grading) still happen normally afterward; step 7
+   re-presents this same dashboard updated with the graded result — it is shown twice,
+   once empty/ready and once filled in, never zero times.
+   If the answer key has already been transcribed (steps 1–3) by the time you present the
+   dashboard, inject it — set `window.__EXAM_DATA__ = {questions: {...}, key: {...}}` in
+   the presented copy — so Lesen/SB render real per-question options (the actual headline
+   bank, MC sentences, SB T1 word choices, SB T2's shared word bank) instead of generic
+   fallbacks, and so selections get live correct/incorrect feedback. Extract these options
+   from the exam's own question pages (not just the answer-key page) while transcribing
+   the key in step 2 — same page-reading pass, no extra PDF trip.
 1. **Get the PDF onto disk and open it.** The exam PDFs are ZIP archives with a `.pdf`
    name. Recipe:
    ```bash
@@ -120,23 +131,32 @@ scores before. **Always grade with the script.** Procedure:
 3. **For the Hörverstehen +/− key, crop and zoom (~3×) the answer-sheet image and read
    each cell deliberately.** The cramped two-column +/− layout OCRs badly; verify against
    the image, don't trust raw `.txt` for these.
-4. **Run `scripts/score_exam.py`** with the key and the user's answers (see the script's
+4. **Get the user's real answers, question by question (1–60).** The dashboard (already
+   open since step 0) has an **"Antworten exportieren"** box that compiles every selection
+   into a `1:a, 2:c, ..., 60:-` string the user can paste back into chat — this **is** a
+   valid source for step 5, equivalent to them typing answers directly, as long as the
+   dashboard was given real per-exam options (see step 0). Either the export box or typed
+   chat answers are acceptable; don't insist on one over the other, and don't ask again if
+   the user has already pasted an export string. If a question's options weren't
+   injected, the dashboard falls back to generic a/b/c (for the fixed-3-option Teile) or
+   free text — still usable as an input path, just without the real wording shown.
+5. **Run `scripts/score_exam.py`** with the key and the user's answers (see the script's
    header for the exact JSON shape). It compares per item, computes each Teil, the raw
    /60, the weighted points, and lists every miss with the correct answer and the weak
    Teile (<60%). Do **not** hand-build the comparison table.
-5. **Show the user the extracted key** for verification against their PDF, then the
+6. **Show the user the extracted key** for verification against their PDF, then the
    graded result.
-6. After grading, **run the `[weaknesses]` logic**: record strengths/failures to memory
+7. **Always present the persistent logging artifact, `assets/pruefungsprotokoll.html`, as
+   an artifact in the conversation, pre-filled with this result** (every one of the 60
+   questions stamped correct/incorrect per the script's output, across all three
+   sections). This step is mandatory,
+   not conditional on the user asking for "the visual logger" — every `[log exam]` ends
+   with the dashboard shown and updated so history/trend tracking stays current. It stores
+   entries via `window.storage` (works only inside a Claude artifact).
+8. After grading, **run the `[weaknesses]` logic**: record strengths/failures to memory
    and propose drills.
 
-Never report a score that didn't come from the script.
-
-**The logging dashboard.** `[log exam]` may also present the persistent logging artifact
-in `assets/pruefungsprotokoll.html` (dropdowns for Lesen/SB, click-through +/− stamps for
-Hören, auto-totals, 36/60 pass marker, editable history). Recreate it as an artifact in
-the conversation when the user wants the visual logger; it stores entries with
-`window.storage` (works only inside a Claude artifact). The dashboard is for *tracking*;
-the *grading* still goes through the script.
+Never report a score that didn't come from the script. Never skip step 7.
 
 ---
 

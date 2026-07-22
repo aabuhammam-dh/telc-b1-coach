@@ -1,2 +1,4 @@
 # Hosts that bot-protect / rate-limit automated link checks (verified manually).
 https://www.telc.net
+# GitHub /stargazers 404s to automated checkers but is valid in a browser (badge click target).
+https://github.com/aabuhammam-dh/telc-b1-coach/stargazers

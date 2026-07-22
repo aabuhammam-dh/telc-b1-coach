@@ -2,6 +2,7 @@
 
 **🌍 Languages:** **English** · [العربية](docs/README.ar.md) · [Türkçe](docs/README.tr.md) · [Русский](docs/README.ru.md) · [Українська](docs/README.uk.md) · [فارسی](docs/README.fa.md) · [Español](docs/README.es.md)
 
+[![CI](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
 ![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
@@ -70,8 +71,8 @@ to the writing coach whenever you work on the letter.
 
 1. Scroll to the top of this repository.
 2. Click the green **`< > Code`** button, then **Download ZIP**.
-3. Unzip the file you downloaded. Inside you'll find two folders:
-   **`telc-b1-exam`** and **`telc-b1-schreiben`**.
+3. Unzip the file you downloaded. Inside you'll find a **`skills/`** folder
+   containing the two skills: **`telc-b1-exam`** and **`telc-b1-schreiben`**.
 
 That's it — those two folders *are* the skills. Now install them in your AI using the
 matching section below.
@@ -89,6 +90,13 @@ npx skills add aabuhammam-dh/telc-b1-coach
 ```
 
 Restart your AI tool afterwards and the skills load automatically. *(This uses the open-source [`skills`](https://github.com/vercel-labs/skills) installer from the Agent Skills ecosystem — community-maintained, not an official Anthropic tool.)*
+
+**Prefer Claude Code's built-in plugin marketplace?** Add this repo as a marketplace, then install the plugin:
+
+```text
+/plugin marketplace add aabuhammam-dh/telc-b1-coach
+/plugin install telc-b1-coach@telc-b1-coach
+```
 
 Not a terminal person, or using the Claude website? Pick an option below instead.
 
@@ -122,7 +130,8 @@ No zipping, no uploading — skills are just folders on your computer.
 
 1. Create the skills folder if it doesn't exist: `~/.claude/skills/`
    *(that's a folder named `skills` inside a hidden `.claude` folder in your home directory).*
-2. Copy **both** `telc-b1-exam` and `telc-b1-schreiben` folders into it.
+2. Copy **both** skill folders — `telc-b1-exam` and `telc-b1-schreiben`, found inside
+   the download's `skills/` folder — into it.
 3. Restart your Claude Code session. It discovers and uses them automatically.
 
 *(Want them only inside one project instead of everywhere? Put the folders in that project's
@@ -182,8 +191,8 @@ exam"* and it'll take over. To try the writing coach, say *"give me a B1 writing
 They pair automatically: the exam coach hands off to the writing coach whenever you work on
 the letter, so **install both**.
 
-Each skill also has its own short guide: [`telc-b1-exam/README.md`](telc-b1-exam/README.md)
-and [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
+Each skill also has its own short guide: [`skills/telc-b1-exam/README.md`](skills/telc-b1-exam/README.md)
+and [`skills/telc-b1-schreiben/README.md`](skills/telc-b1-schreiben/README.md).
 
 ---
 

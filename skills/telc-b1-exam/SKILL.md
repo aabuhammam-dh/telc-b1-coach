@@ -13,6 +13,9 @@ description: >-
   words from this test", "drill my Hörverstehen traps", or naming an exam.
   Authoritative for telc B1 strategy, scoring, and section tactics. Does NOT teach or
   correct the Schreiben letter — for that it activates telc-b1-schreiben.
+license: MIT
+metadata:
+  version: "2.0.0"
 ---
 
 # telc Deutsch B1 — Exam Coach (objective sections + oral)

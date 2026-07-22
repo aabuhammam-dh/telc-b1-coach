@@ -4,6 +4,7 @@
 
 **🌍 Languages:** [English](../README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · **Українська** · [فارسی](README.fa.md) · [Español](README.es.md)
 
+[![CI](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
 ![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
@@ -72,7 +73,7 @@ flowchart LR
 
 1. Прокрутіть угору цього репозиторію.
 2. Натисніть зелену кнопку **`< > Code`**, а потім **Download ZIP**.
-3. Розпакуйте завантажений файл. Усередині ви знайдете дві теки:
+3. Розпакуйте завантажений файл. Усередині теки **`skills`** ви знайдете дві теки навичок:
    **`telc-b1-exam`** та **`telc-b1-schreiben`**.
 
 Ось і все — ці дві теки *і є* навички. Тепер встановіть їх у ваш ШІ, скориставшись відповідним розділом нижче.
@@ -90,6 +91,13 @@ npx skills add aabuhammam-dh/telc-b1-coach
 ```
 
 Після цього перезапустіть ваш ШІ-інструмент, і навички завантажаться автоматично. *(Тут використовується інсталятор із відкритим кодом [`skills`](https://github.com/vercel-labs/skills) з екосистеми Agent Skills — його підтримує спільнота, це не офіційний інструмент Anthropic.)*
+
+**Надаєте перевагу вбудованому маркетплейсу плагінів Claude Code?** Додайте цей репозиторій як маркетплейс, а потім установіть плагін:
+
+```text
+/plugin marketplace add aabuhammam-dh/telc-b1-coach
+/plugin install telc-b1-coach@telc-b1-coach
+```
 
 Не любите термінал або користуєтеся вебсайтом Claude? Тоді виберіть один з варіантів нижче.
 
@@ -123,7 +131,7 @@ npx skills add aabuhammam-dh/telc-b1-coach
 
 1. Створіть теку для навичок, якщо її ще немає: `~/.claude/skills/`
    *(це тека з назвою `skills` усередині прихованої теки `.claude` у вашому домашньому каталозі).*
-2. Скопіюйте **обидві** теки `telc-b1-exam` та `telc-b1-schreiben` до неї.
+2. Скопіюйте **обидві** теки `telc-b1-exam` та `telc-b1-schreiben` (вони всередині теки `skills` завантаженого файлу) до неї.
 3. Перезапустіть сесію Claude Code. Він виявляє та використовує їх автоматично.
 
 *(Хочете, щоб вони були лише всередині одного проєкту, а не всюди? Розмістіть теки у теці
@@ -183,8 +191,8 @@ GitHub Copilot та 25+ інших): скопіюйте теки навичок 
 Вони поєднуються автоматично: тренер з іспиту передає естафету тренеру з письма щоразу, коли ви працюєте над
 листом, тож **встановіть обидві**.
 
-Кожна навичка також має власний короткий посібник: [`telc-b1-exam/README.md`](telc-b1-exam/README.md)
-та [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
+Кожна навичка також має власний короткий посібник: [`skills/telc-b1-exam/README.md`](../skills/telc-b1-exam/README.md)
+та [`skills/telc-b1-schreiben/README.md`](../skills/telc-b1-schreiben/README.md).
 
 ---
 

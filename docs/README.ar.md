@@ -4,6 +4,7 @@
 
 **🌍 Languages:** [English](../README.md) · **العربية** · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
 
+[![CI](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
 ![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
@@ -72,7 +73,7 @@ flowchart LR
 
 1. مرّر إلى أعلى هذا المستودع.
 2. انقر الزر الأخضر **`< > Code`**، ثم **Download ZIP**.
-3. فُكّ ضغط الملف الذي نزّلته. ستجد بداخله مجلّدين:
+3. فُكّ ضغط الملف الذي نزّلته. ستجد بداخله مجلّد `skills`، وبداخله مجلّدا المهارتين:
    **`telc-b1-exam`** و **`telc-b1-schreiben`**.
 
 هذا كل شيء — هذان المجلّدان *هما* المهارتان. الآن ثبّتهما في الذكاء الاصطناعي الذي تستخدمه
@@ -91,6 +92,13 @@ npx skills add aabuhammam-dh/telc-b1-coach
 ```
 
 أعد تشغيل أداة الذكاء الاصطناعي لديك بعد ذلك، وستُحمَّل المهارات تلقائيًا. *(يستخدم هذا مثبّت [`skills`](https://github.com/vercel-labs/skills) مفتوح المصدر من منظومة مهارات الوكلاء — وهو مشروع تحت رعاية المجتمع، وليس أداة رسمية من Anthropic.)*
+
+**هل تفضّل سوق الإضافات المدمج في Claude Code؟** أضِف هذا المستودع بوصفه سوقًا، ثم ثبّت الإضافة:
+
+```text
+/plugin marketplace add aabuhammam-dh/telc-b1-coach
+/plugin install telc-b1-coach@telc-b1-coach
+```
 
 لست من محبّي الطرفية، أو تستخدم موقع Claude؟ اختر أحد الخيارات أدناه بدلًا من ذلك.
 
@@ -124,7 +132,7 @@ npx skills add aabuhammam-dh/telc-b1-coach
 
 1. أنشئ مجلّد المهارات إن لم يكن موجودًا: `~/.claude/skills/`
    *(هذا مجلّد باسم `skills` داخل مجلّد مخفي باسم `.claude` في مجلّد المستخدم الرئيسي لديك).*
-2. انسخ **كلا** المجلّدين `telc-b1-exam` و `telc-b1-schreiben` إليه.
+2. انسخ **كلا** المجلّدين `telc-b1-exam` و `telc-b1-schreiben` (تجدهما داخل مجلّد `skills` في الملف المنزَّل) إليه.
 3. أعد تشغيل جلسة Claude Code. سيكتشفها ويستخدمها تلقائيًا.
 
 *(هل تريدهما داخل مشروع واحد فقط بدلًا من كل مكان؟ ضع المجلّدين في مجلّد
@@ -184,8 +192,8 @@ Gemini، أو **GPTs** في ChatGPT): هذه لا تقرأ ملفات المها
 تترابطان تلقائيًا: يحيل مدرّب الامتحان إلى مدرّب الكتابة كلما عملت على الرسالة، لذا
 **ثبّت كلتيهما**.
 
-لكل مهارة أيضًا دليلها القصير الخاص: [`telc-b1-exam/README.md`](telc-b1-exam/README.md)
-و [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
+لكل مهارة أيضًا دليلها القصير الخاص: [`skills/telc-b1-exam/README.md`](../skills/telc-b1-exam/README.md)
+و [`skills/telc-b1-schreiben/README.md`](../skills/telc-b1-schreiben/README.md).
 
 ---
 

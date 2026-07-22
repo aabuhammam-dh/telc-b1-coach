@@ -4,6 +4,7 @@
 
 **🌍 Languages:** [English](../README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · **فارسی** · [Español](README.es.md)
 
+[![CI](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
 ![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
@@ -72,7 +73,7 @@ flowchart LR
 
 1. به بالای این مخزن (repository) بروید.
 2. روی دکمهٔ سبز **`< > Code`** کلیک کنید، سپس **Download ZIP**.
-3. فایلی که دانلود کردید را از حالت فشرده خارج کنید. درون آن دو پوشه می‌یابید:
+3. فایلی که دانلود کردید را از حالت فشرده خارج کنید. درون آن یک پوشهٔ `skills/` می‌یابید که این دو پوشهٔ مهارت را در بر دارد:
    **`telc-b1-exam`** و **`telc-b1-schreiben`**.
 
 همین بود — همان دو پوشه *خودِ* مهارت‌ها هستند. حالا با استفاده از بخش متناسب زیر
@@ -91,6 +92,13 @@ npx skills add aabuhammam-dh/telc-b1-coach
 ```
 
 پس از آن ابزار هوش مصنوعی خود را دوباره راه‌اندازی کنید و مهارت‌ها به‌طور خودکار بارگذاری می‌شوند. *(این کار از نصب‌کنندهٔ متن‌باز [`skills`](https://github.com/vercel-labs/skills) از اکوسیستم Agent Skills استفاده می‌کند — نگه‌داری‌شده توسط جامعه، نه یک ابزار رسمی Anthropic.)*
+
+**بازار افزونهٔ داخلی Claude Code را ترجیح می‌دهید؟** این مخزن را به‌عنوان یک بازار (marketplace) اضافه کنید، سپس افزونه را نصب کنید:
+
+```text
+/plugin marketplace add aabuhammam-dh/telc-b1-coach
+/plugin install telc-b1-coach@telc-b1-coach
+```
 
 اهل ترمینال نیستید یا از وب‌سایت Claude استفاده می‌کنید؟ به‌جای آن یکی از گزینه‌های زیر را انتخاب کنید.
 
@@ -124,7 +132,7 @@ npx skills add aabuhammam-dh/telc-b1-coach
 
 1. اگر پوشهٔ مهارت‌ها وجود ندارد آن را بسازید: `~/.claude/skills/`
    *(یعنی پوشه‌ای به نام `skills` درون یک پوشهٔ مخفی `.claude` در پوشهٔ خانگی شما).*
-2. **هر دو** پوشهٔ `telc-b1-exam` و `telc-b1-schreiben` را درون آن کپی کنید.
+2. **هر دو** پوشهٔ `telc-b1-exam` و `telc-b1-schreiben` (که درون پوشهٔ `skills/` دانلودشده قرار دارند) را درون آن کپی کنید.
 3. نشست Claude Code خود را دوباره راه‌اندازی کنید. آن‌ها را کشف کرده و به‌طور خودکار استفاده می‌کند.
 
 *(می‌خواهید فقط درون یک پروژه باشند نه همه‌جا؟ به‌جای آن پوشه‌ها را در پوشهٔ
@@ -183,8 +191,8 @@ GitHub Copilot و ۲۵+ ابزار دیگر): پوشه‌های مهارت را 
 آن‌ها به‌طور خودکار جفت می‌شوند: هرگاه روی نامه کار کنید مربی آزمون کار را به مربی نگارش
 تحویل می‌دهد، پس **هر دو را نصب کنید**.
 
-هر مهارت راهنمای کوتاه خودش را هم دارد: [`telc-b1-exam/README.md`](telc-b1-exam/README.md)
-و [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
+هر مهارت راهنمای کوتاه خودش را هم دارد: [`skills/telc-b1-exam/README.md`](../skills/telc-b1-exam/README.md)
+و [`skills/telc-b1-schreiben/README.md`](../skills/telc-b1-schreiben/README.md).
 
 ---
 

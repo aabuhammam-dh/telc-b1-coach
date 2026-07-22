@@ -4,6 +4,7 @@
 
 **🌍 Languages:** [English](../README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · **Español**
 
+[![CI](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
 ![Works with](https://img.shields.io/badge/works_with-Claude·Gemini·Codex-5436DA)
@@ -72,7 +73,7 @@ hacia el entrenador de escritura siempre que trabajes en la carta.
 
 1. Ve al principio de este repositorio.
 2. Haz clic en el botón verde **`< > Code`** y luego en **Download ZIP**.
-3. Descomprime el archivo que descargaste. Dentro encontrarás dos carpetas:
+3. Descomprime el archivo que descargaste. Dentro, en una carpeta `skills/`, encontrarás dos carpetas:
    **`telc-b1-exam`** y **`telc-b1-schreiben`**.
 
 Eso es todo — esas dos carpetas *son* las skills. Ahora instálalas en tu IA usando la
@@ -91,6 +92,13 @@ npx skills add aabuhammam-dh/telc-b1-coach
 ```
 
 Reinicia tu herramienta de IA después y las skills se cargan automáticamente. *(Esto usa el instalador de código abierto [`skills`](https://github.com/vercel-labs/skills) del ecosistema Agent Skills — mantenido por la comunidad, no es una herramienta oficial de Anthropic.)*
+
+**¿Prefieres el marketplace de plugins integrado de Claude Code?** Añade este repositorio como un marketplace y luego instala el plugin:
+
+```text
+/plugin marketplace add aabuhammam-dh/telc-b1-coach
+/plugin install telc-b1-coach@telc-b1-coach
+```
 
 ¿No eres de terminal, o usas el sitio web de Claude? Elige una opción de abajo en su lugar.
 
@@ -124,7 +132,7 @@ Sin comprimir, sin subir — las skills son simplemente carpetas en tu computado
 
 1. Crea la carpeta de skills si no existe: `~/.claude/skills/`
    *(esa es una carpeta llamada `skills` dentro de una carpeta oculta `.claude` en tu directorio personal).*
-2. Copia **ambas** carpetas `telc-b1-exam` y `telc-b1-schreiben` dentro.
+2. Copia **ambas** carpetas `telc-b1-exam` y `telc-b1-schreiben` (dentro de la carpeta `skills/` de la descarga) dentro.
 3. Reinicia tu sesión de Claude Code. Las descubre y las usa automáticamente.
 
 *(¿Las quieres solo dentro de un proyecto en lugar de en todas partes? Pon las carpetas en la
@@ -184,8 +192,8 @@ telc B1"* y tomará el control. Para probar el entrenador de escritura, di *"dam
 Se emparejan automáticamente: el entrenador del examen cede el control al entrenador de escritura
 cada vez que trabajas en la carta, así que **instala las dos**.
 
-Cada skill también tiene su propia guía breve: [`telc-b1-exam/README.md`](telc-b1-exam/README.md)
-y [`telc-b1-schreiben/README.md`](telc-b1-schreiben/README.md).
+Cada skill también tiene su propia guía breve: [`skills/telc-b1-exam/README.md`](../skills/telc-b1-exam/README.md)
+y [`skills/telc-b1-schreiben/README.md`](../skills/telc-b1-schreiben/README.md).
 
 ---
 

@@ -14,6 +14,9 @@ description: >-
   model", asks to "drill/quiz/test me on the mistakes I keep making", or mentions
   Leitpunkte, formeller/informeller Brief, Redemittel, or Schreiben. Authoritative
   source for telc B1 writing; prefer over general knowledge.
+license: MIT
+metadata:
+  version: "2.0.0"
 ---
 
 # telc Deutsch B1 — Schriftlicher Ausdruck Coach

@@ -1,0 +1,39 @@
+name: "🐞 Bug report"
+description: Something in a skill misbehaves (wrong behavior, broken command, install issue).
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill?
+      options:
+        - telc-b1-exam
+        - telc-b1-schreiben
+        - Both / not sure
+        - Install / setup
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what went wrong?
+      placeholder: "I typed [mock exam] and …"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Where are you running it?
+      options:
+        - Claude app / website
+        - Claude Code
+        - Gemini CLI / Cursor / Codex / other
+    validations:
+      required: true

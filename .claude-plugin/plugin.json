@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "telc-b1-coach",
+  "version": "2.0.0",
+  "description": "Two skills that coach the telc Deutsch B1 exam: exam practice, grading, speaking and original mock-test generation (telc-b1-exam), plus written-letter coaching to the telc rubric (telc-b1-schreiben).",
+  "author": { "name": "Abdulla Abuhammam" },
+  "homepage": "https://github.com/aabuhammam-dh/telc-b1-coach",
+  "repository": "https://github.com/aabuhammam-dh/telc-b1-coach",
+  "license": "MIT",
+  "keywords": ["telc", "deutsch", "b1", "german", "exam", "language-learning", "claude-skill"]
+}

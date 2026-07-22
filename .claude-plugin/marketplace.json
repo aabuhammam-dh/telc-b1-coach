@@ -1,0 +1,15 @@
+{
+  "name": "telc-b1-coach",
+  "owner": { "name": "Abdulla Abuhammam" },
+  "metadata": {
+    "description": "telc Deutsch B1 exam-prep skills for Claude Code and other Agent-Skills tools.",
+    "version": "2.0.0"
+  },
+  "plugins": [
+    {
+      "name": "telc-b1-coach",
+      "source": "./",
+      "description": "Two skills for telc Deutsch B1: exam practice/grading/speaking/mock generation, and written-letter coaching."
+    }
+  ]
+}

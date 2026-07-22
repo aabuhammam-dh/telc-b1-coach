@@ -1,0 +1,28 @@
+name: "📚 Content feedback or request"
+description: Report an incorrect grammar/scoring explanation, or request new content/a feature.
+labels: ["content"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options:
+        - Incorrect grammar / scoring / exam explanation
+        - Suggested improvement to a drill or phrase
+        - New content or feature request
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What's wrong or what would you like? Quote the exact text if reporting an error.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source (optional)
+      description: If this is a correctness issue, link a reputable grammar/telc source that supports the fix.
+    validations:
+      required: false

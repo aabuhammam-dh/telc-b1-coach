@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package skills and attach to release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate before packaging
+        run: bash ./scripts/validate-skills.sh
+
+      - name: Zip each skill
+        run: |
+          mkdir -p dist
+          for d in skills/*/; do
+            name="$(basename "$d")"
+            (cd skills && zip -r "../dist/${name}.zip" "$name" -x '*/.DS_Store')
+          done
+          ls -la dist
+
+      - name: Attach .zip assets to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip

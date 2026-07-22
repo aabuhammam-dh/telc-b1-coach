@@ -1,6 +1,6 @@
 # telc B1 Coach 🇩🇪
 
-**🌍 Languages:** **English** · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
+**🌍 Languages:** **English** · [العربية](docs/README.ar.md) · [Türkçe](docs/README.tr.md) · [Русский](docs/README.ru.md) · [Українська](docs/README.uk.md) · [فارسی](docs/README.fa.md) · [Español](docs/README.es.md)
 
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
@@ -79,6 +79,18 @@ matching section below.
 ---
 
 ## Step 2 — Install them (pick your app)
+
+### ⚡ Fastest — one-line install for Claude Code & other CLIs
+
+If you have [Node.js](https://nodejs.org) installed, a single command adds **both** skills to **Claude Code** (and Gemini CLI, Cursor, Codex, and other tools that follow the Agent Skills standard):
+
+```bash
+npx skills add aabuhammam-dh/telc-b1-coach
+```
+
+Restart your AI tool afterwards and the skills load automatically. *(This uses the open-source [`skills`](https://github.com/vercel-labs/skills) installer from the Agent Skills ecosystem — community-maintained, not an official Anthropic tool.)*
+
+Not a terminal person, or using the Claude website? Pick an option below instead.
 
 ### 🟣 Option A — Claude website or Claude app (most people)
 

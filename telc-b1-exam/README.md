@@ -1,7 +1,5 @@
 # telc-b1-exam — how to use it
 
-**🌍 Languages:** **English** · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
-
 Your strict telc **Deutsch B1** coach for the objective sections (Leseverstehen,
 Sprachbausteine, Hörverstehen) and the oral exam, built around practising on past papers.
 It logs and grades your answers, explains every miss, finds recurring traps, drills your

@@ -1,8 +1,8 @@
-<!-- Translated from README.md at commit 8080cea. Re-translate when the English version changes. -->
+<!-- Translated from README.md at commit c460afa. Re-translate when the English version changes. -->
 
 # مدرب telc B1 🇩🇪
 
-**🌍 Languages:** [English](README.md) · **العربية** · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
+**🌍 Languages:** [English](../README.md) · **العربية** · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · [Español](README.es.md)
 
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
@@ -41,7 +41,7 @@
 - **`telc-b1-schreiben`** — تدرّبك على **الرسالة المكتوبة** (Schreiben): تعلّمك الصيغة،
   وتصحّح رسالتك كما يفعل المصحّحون الحقيقيون، وتدرّبك على الأخطاء التي تكرّرها باستمرار.
 
-تطلب الأشياء بلغة بسيطة (*"صحّح إجاباتي"*، *"اشرح الفرق بين weil و denn"*،
+تطلب ما تريده بلغة بسيطة (*"صحّح إجاباتي"*، *"اشرح الفرق بين weil و denn"*،
 *"هل ستنجح هذه الرسالة؟"*) أو بأوامر قصيرة مثل `[log exam]` أو `/written-grade`.
 
 > [!TIP]
@@ -63,7 +63,7 @@ flowchart LR
   W --> S["[write]<br/>letter → Schreiben skill"]
 ```
 
-حلقة واحدة: أنشئ امتحانًا أو صحّحه، وجد نقاط ضعفك، ودرّب عليها، وكرّر — وانتقل جانبًا
+حلقة واحدة: أنشئ امتحانًا أو صحّحه، وجد نقاط ضعفك، ودرّب عليها، وكرّر — وتتفرّع
 إلى مدرّب الكتابة كلما عملت على الرسالة.
 
 ---
@@ -81,6 +81,18 @@ flowchart LR
 ---
 
 ## الخطوة 2 — ثبّتهما (اختر تطبيقك)
+
+### ⚡ الأسرع — تثبيت بسطر واحد لـ Claude Code وأدوات سطر الأوامر الأخرى
+
+إن كان لديك [Node.js](https://nodejs.org) مثبّتًا، فأمر واحد يضيف **كلتا** المهارتين إلى **Claude Code** (وأيضًا Gemini CLI وCursor وCodex وسائر الأدوات التي تتبع معيار مهارات الوكلاء Agent Skills):
+
+```bash
+npx skills add aabuhammam-dh/telc-b1-coach
+```
+
+أعد تشغيل أداة الذكاء الاصطناعي لديك بعد ذلك، وستُحمَّل المهارات تلقائيًا. *(يستخدم هذا مثبّت [`skills`](https://github.com/vercel-labs/skills) مفتوح المصدر من منظومة مهارات الوكلاء — وهو مشروع تحت رعاية المجتمع، وليس أداة رسمية من Anthropic.)*
+
+لست من محبّي الطرفية، أو تستخدم موقع Claude؟ اختر أحد الخيارات أدناه بدلًا من ذلك.
 
 ### 🟣 الخيار A — موقع Claude أو تطبيق Claude (لمعظم الناس)
 

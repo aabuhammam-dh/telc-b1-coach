@@ -1,8 +1,8 @@
-<!-- Translated from README.md at commit 8080cea. Re-translate when the English version changes. -->
+<!-- Translated from README.md at commit c460afa. Re-translate when the English version changes. -->
 
 # telc B1 Coach 🇩🇪
 
-**🌍 Languages:** [English](README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · **Español**
+**🌍 Languages:** [English](../README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [فارسی](README.fa.md) · **Español**
 
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
@@ -81,6 +81,18 @@ sección correspondiente más abajo.
 ---
 
 ## Paso 2 — Instálalas (elige tu app)
+
+### ⚡ Lo más rápido — instalación de una línea para Claude Code y otras CLIs
+
+Si tienes [Node.js](https://nodejs.org) instalado, un solo comando añade **ambas** skills a **Claude Code** (y a Gemini CLI, Cursor, Codex y otras herramientas que siguen el estándar Agent Skills):
+
+```bash
+npx skills add aabuhammam-dh/telc-b1-coach
+```
+
+Reinicia tu herramienta de IA después y las skills se cargan automáticamente. *(Esto usa el instalador de código abierto [`skills`](https://github.com/vercel-labs/skills) del ecosistema Agent Skills — mantenido por la comunidad, no es una herramienta oficial de Anthropic.)*
+
+¿No eres de terminal, o usas el sitio web de Claude? Elige una opción de abajo en su lugar.
 
 ### 🟣 Opción A — Sitio web de Claude o app de Claude (la mayoría de la gente)
 
@@ -196,7 +208,7 @@ _Guía aproximada, no una comparación científica._
 
 - **¿Quieres material oficial también?** telc te ofrece un **examen modelo oficial gratuito** —una prueba
   completa *con claves de respuestas y el audio de comprensión auditiva*— en su página de B1. Descárgalo y
-  apunta el entrenador hacia él:
+  dirige al entrenador hacia él:
   **<https://www.telc.net/sprachpruefungen/deutsch/zertifikat-deutsch-telc-deutsch-b1/>**
   (la página también tiene versión en inglés). Cualquier examen de práctica en formato telc sirve; las
   claves de respuestas están en la última página.

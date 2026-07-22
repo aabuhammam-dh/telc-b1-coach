@@ -1,8 +1,8 @@
-<!-- Translated from README.md at commit 8080cea. Re-translate when the English version changes. -->
+<!-- Translated from README.md at commit c460afa. Re-translate when the English version changes. -->
 
 # Тренер telc B1 🇩🇪
 
-**🌍 Languages:** [English](README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · **Українська** · [فارسی](README.fa.md) · [Español](README.es.md)
+**🌍 Languages:** [English](../README.md) · [العربية](README.ar.md) · [Türkçe](README.tr.md) · [Русский](README.ru.md) · **Українська** · [فارسی](README.fa.md) · [Español](README.es.md)
 
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Крок 1 — Завантажте навички з цієї сторінки
 
-1. Прогорніть до верху цього репозиторію.
+1. Прокрутіть угору цього репозиторію.
 2. Натисніть зелену кнопку **`< > Code`**, а потім **Download ZIP**.
 3. Розпакуйте завантажений файл. Усередині ви знайдете дві теки:
    **`telc-b1-exam`** та **`telc-b1-schreiben`**.
@@ -80,6 +80,18 @@ flowchart LR
 ---
 
 ## Крок 2 — Встановіть їх (виберіть свій застосунок)
+
+### ⚡ Найшвидше — однорядкове встановлення для Claude Code та інших CLI
+
+Якщо у вас встановлено [Node.js](https://nodejs.org), одна команда додає **обидві** навички до **Claude Code** (а також до Gemini CLI, Cursor, Codex та інших інструментів, що дотримуються стандарту Agent Skills):
+
+```bash
+npx skills add aabuhammam-dh/telc-b1-coach
+```
+
+Після цього перезапустіть ваш ШІ-інструмент, і навички завантажаться автоматично. *(Тут використовується інсталятор із відкритим кодом [`skills`](https://github.com/vercel-labs/skills) з екосистеми Agent Skills — його підтримує спільнота, це не офіційний інструмент Anthropic.)*
+
+Не любите термінал або користуєтеся вебсайтом Claude? Тоді виберіть один з варіантів нижче.
 
 ### 🟣 Варіант A — вебсайт Claude або застосунок Claude (для більшості)
 
@@ -157,7 +169,7 @@ GitHub Copilot та 25+ інших): скопіюйте теки навичок 
 > **`[help]`**
 
 Тренер з іспиту має вивести перелік своїх команд. Або просто скажіть *«Я хочу підготуватися до
-іспиту telc B1»*, і він візьме кермо на себе. Щоб випробувати тренера з письма, скажіть *«дай мені завдання на письмо рівня B1»*.
+іспиту telc B1»*, і він усе візьме на себе. Щоб випробувати тренера з письма, скажіть *«дай мені завдання на письмо рівня B1»*.
 
 ---
 
@@ -165,7 +177,7 @@ GitHub Copilot та 25+ інших): скопіюйте теки навичок 
 
 | Навичка | Охоплює | Спробуйте сказати / ввести |
 |---|---|---|
-| **`telc-b1-exam`** | Читання (Leseverstehen), Sprachbausteine, Аудіювання (Hörverstehen) + **усний** іспит, оцінювання, вправи, граматику, **генерацію оригінальних тренувальних тестів** та **навчання-і-перевірку окремих тем** з відстеженням готовності | `[mock exam]`, `[topic "connectors"]`, `[log exam]`, «поясни obwohl проти trotzdem» |
+| **`telc-b1-exam`** | Читання (Leseverstehen), Sprachbausteine, Аудіювання (Hörverstehen) + **усний** іспит, оцінювання, вправи, граматику, **генерацію оригінальних тренувальних тестів** та **навчання та перевірку окремих тем** з відстеженням готовності | `[mock exam]`, `[topic "connectors"]`, `[log exam]`, «поясни obwohl проти trotzdem» |
 | **`telc-b1-schreiben`** | **Письмовий лист** — формат, оцінювання, вправи на помилки, фрази | `/written-grade`, «чи склав би цей лист іспит?» |
 
 Вони поєднуються автоматично: тренер з іспиту передає естафету тренеру з письма щоразу, коли ви працюєте над

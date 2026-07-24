@@ -2,6 +2,7 @@
 
 **🌍 Languages:** **English** · [العربية](docs/README.ar.md) · [Türkçe](docs/README.tr.md) · [Русский](docs/README.ru.md) · [Українська](docs/README.uk.md) · [فارسی](docs/README.fa.md) · [Español](docs/README.es.md)
 
+[![skills.sh](https://skills.sh/b/aabuhammam-dh/telc-b1-coach)](https://skills.sh/aabuhammam-dh/telc-b1-coach)
 [![CI](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml/badge.svg)](https://github.com/aabuhammam-dh/telc-b1-coach/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/aabuhammam-dh/telc-b1-coach?color=blue)
 [![Stars](https://img.shields.io/github/stars/aabuhammam-dh/telc-b1-coach?style=social)](https://github.com/aabuhammam-dh/telc-b1-coach/stargazers)
